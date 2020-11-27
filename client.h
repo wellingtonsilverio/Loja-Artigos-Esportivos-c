@@ -7,15 +7,15 @@ typedef struct client{
   int CPF;
   int fone;
   char email[100];
-  struct client *prox;
-} cliente;
+  struct Client *prox;
+} Client;
 
-void cadastrarCliente(cliente **, int);
-void modificarCliente(cliente **, int);
-void excluirCliente(cliente *);
-cliente *pegarUltimoCliente(cliente **);
-int procuraCliente(cliente **, int);
-cliente *pegarCliente(cliente **, int);
-void imprimeListaClientes(cliente **);
+void createClient(char*, int, int, char*);
+Client* getFirstClient();
+Client* getNextClient(Client*);
+Client* getLastClient();
+Client* getClientByCPF(int);
+void updateClientByCPF(int, char*, int, char*);
+void deleteClientByCPF(int);
 
 #endif

@@ -8,7 +8,7 @@
 #include "main.h"
 #include "menu.h"
 
-cliente *clients;
+Client *clients;
 estoque *stocks;
 carrinho *carts;
 venda *sales;
@@ -24,7 +24,7 @@ int main()
 
 //criaListas: cria as listas existente no software usando os ponteiros de ponteiros recebidos na entrada(CPF, codigo e cod de venda comecam com 0).
 void criarListas(){
-  clients = (cliente *)malloc(sizeof(cliente));
+  clients = (Client *)malloc(sizeof(Client));
   stocks = (estoque *)malloc(sizeof(estoque));
   carts = (carrinho *)malloc(sizeof(carrinho));
   sales = (venda *)malloc(sizeof(venda));

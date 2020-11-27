@@ -6,8 +6,9 @@
 #include "stock.h"
 #include "sales.h"
 #include "shopping_cart.h"
+#include "getVariables.h"
 
-void menu(cliente **iniCliente, estoque **iniEstoque, carrinho **iniCarrinho)
+void menu(Client **iniCliente, estoque **iniEstoque, carrinho **iniCarrinho)
 {
 	// Variaveis
 	int cpf, cliente, estoque;
@@ -47,13 +48,13 @@ void menu(cliente **iniCliente, estoque **iniEstoque, carrinho **iniCarrinho)
 		printf("\tCADASTRAR CLIENTE:\n");
 		printf("\tDigite o CPF do novo cliente: ");
 		scanf("%d", &cpf);
-		if (procuraCliente(&iniCliente, cpf) == 1)
+		if (getClientByCPF(cpf) != NULL)
 		{
 			printf("\tERRO! - CPF ja cadastrado!\n");
 		}
 		else
 		{
-			cadastrarCliente(&iniCliente, cpf);
+			createClient(getString("\tNome: "), cpf, getInt("\tTelefone: "), getString("\tE-mail: "));
 		}
 		break;
 	case 3:
@@ -114,7 +115,14 @@ void menu(cliente **iniCliente, estoque **iniEstoque, carrinho **iniCarrinho)
 			printf("\tALTERAR CLIENTE:\n");
 			printf("\tDigite o CPF do cliente: ");
 			scanf("%d", &cpf);
-			modificarCliente(&iniCliente, cpf);
+			if (getClientByCPF(cpf) != NULL)
+			{
+				updateClientByCPF(cpf, getString("\tNome: "), getInt("\tTelefone: "), getString("\tE-mail: "));
+			}
+			else
+			{
+				printf("\ERRO! - nao foi possivel encontrar o CPF!\n");
+			}
 			break;
 		case 2:
 			printf("\tALTERAR PRODUTO:\n");
@@ -126,13 +134,13 @@ void menu(cliente **iniCliente, estoque **iniEstoque, carrinho **iniCarrinho)
 			printf("\tEXCLUIR CLIENTE:\n");
 			printf("\tDigite o CPF do cliente: ");
 			scanf("%d", &cpf);
-			if (procuraCliente(&iniCliente, cpf) == 1)
+			if (getClientByCPF(cpf) != NULL)
 			{
 				printf("\tVoce tem certeza?(1-Sim, 0-Nao): ");
 				scanf("%d", &opcao);
 				if (opcao == 1)
 				{
-					excluirCliente(pegarCliente(&iniCliente, cpf));
+					deleteClientByCPF(cpf);
 					printf("\tCLIENTE EXCLUIDO COM SUCESSO!!!\n");
 				}
 			}
