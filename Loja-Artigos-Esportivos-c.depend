@@ -1,0 +1,32 @@
+# depslib dependency file v1.0
+1606423964 source:c:\users\wellington\unicamp\loja-artigos-esportivos-c\registro.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"registro.h"
+
+1606423964 c:\users\wellington\unicamp\loja-artigos-esportivos-c\registro.h
+
+1606484276 source:c:\users\wellington\unicamp\loja-artigos-esportivos-c\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"menu.h"
+	"main.h"
+	"shopping_cart.h"
+
+1606432602 c:\users\wellington\unicamp\loja-artigos-esportivos-c\menu.h
+
+1606484258 c:\users\wellington\unicamp\loja-artigos-esportivos-c\main.h
+	"client.h"
+	"sales.h"
+	"stock.h"
+
+1606432781 c:\users\wellington\unicamp\loja-artigos-esportivos-c\client.h
+
+1606441104 c:\users\wellington\unicamp\loja-artigos-esportivos-c\sales.h
+
+1606432743 c:\users\wellington\unicamp\loja-artigos-esportivos-c\stock.h
+
+1606484123 c:\users\wellington\unicamp\loja-artigos-esportivos-c\shopping_cart.h
+
