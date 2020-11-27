@@ -5,6 +5,6 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-void criarListas(cliente **, estoque **, carrinho **);
+void criarListas();
 
 #endif

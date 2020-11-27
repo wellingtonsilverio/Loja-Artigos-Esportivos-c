@@ -3,8 +3,8 @@
 #include "stock.h"
 
 //cadastrarVendas: recebe a lista de vendas e adiciona uma nova venda a mesma.
-void cadastrarVendas(vendas **lista, estoque **listaStock, int codProduto, int quantidade){
-  vendas *novo = (vendas *)malloc(sizeof(vendas));
+void cadastrarVendas(venda **lista, estoque **listaStock, int codProduto, int quantidade){
+  venda *novo = (venda *)malloc(sizeof(venda));
   estoque *p = (*listaStock);
 
   if (novo == 0){
@@ -30,7 +30,7 @@ void cadastrarVendas(vendas **lista, estoque **listaStock, int codProduto, int q
 void trocaItem(carrinho **lista, estoque **listaStock, int codSale, int codProduto){
   carrinho *p = (*lista);
   estoque *q = (*listaStock);
-  vendas *r = (p->lista);
+  venda *r = (p->lista);
 
   int qtdRessarcida;
   int find = 0;
@@ -96,8 +96,8 @@ void imprimeCarrinhos(carrinho **lista, estoque **iniStock){
 }
 
 //imprimeVendas: recebe a lista de vendas e imprime ela.
-void imprimeVendas(vendas **lista, estoque **iniStock){
-  vendas *p = (*lista);
+void imprimeVendas(venda **lista, estoque **iniStock){
+  venda *p = (*lista);
   estoque *q = (*iniStock);
 
   while (p->prox != NULL){

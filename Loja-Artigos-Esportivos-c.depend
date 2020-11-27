@@ -12,37 +12,41 @@
 
 1606423964 c:\users\wellington\unicamp\loja-artigos-esportivos-c\registro.h
 
-1606489495 source:c:\users\wellington\unicamp\loja-artigos-esportivos-c\main.c
+1606490456 source:c:\users\wellington\unicamp\loja-artigos-esportivos-c\main.c
 	<stdlib.h>
 	"main.h"
 	"menu.h"
 
 1606432602 c:\users\wellington\unicamp\loja-artigos-esportivos-c\menu.h
 
-1606484258 c:\users\wellington\unicamp\loja-artigos-esportivos-c\main.h
+1606490028 c:\users\wellington\unicamp\loja-artigos-esportivos-c\main.h
 	"client.h"
 	"sales.h"
 	"stock.h"
 
 1606432781 c:\users\wellington\unicamp\loja-artigos-esportivos-c\client.h
 
-1606441104 c:\users\wellington\unicamp\loja-artigos-esportivos-c\sales.h
+1606490587 c:\users\wellington\unicamp\loja-artigos-esportivos-c\sales.h
 
 1606432743 c:\users\wellington\unicamp\loja-artigos-esportivos-c\stock.h
 
-1606484123 c:\users\wellington\unicamp\loja-artigos-esportivos-c\shopping_cart.h
+1606490596 c:\users\wellington\unicamp\loja-artigos-esportivos-c\shopping_cart.h
 
-1606489577 source:c:\users\wellington\unicamp\loja-artigos-esportivos-c\sales.c
+1606490719 source:c:\users\wellington\unicamp\loja-artigos-esportivos-c\sales.c
 	<stdio.h>
 	<stdlib.h>
 	"sales.h"
 
-1606489598 source:c:\users\wellington\unicamp\loja-artigos-esportivos-c\shopping_cart.c
+1606490683 source:c:\users\wellington\unicamp\loja-artigos-esportivos-c\shopping_cart.c
 	<stdio.h>
 	"sales.h"
 	"stock.h"
 
-1606487876 source:c:\users\wellington\unicamp\loja-artigos-esportivos-c\stock.c
+1606489649 source:c:\users\wellington\unicamp\loja-artigos-esportivos-c\stock.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"stock.h"
 
 1606489412 source:c:\users\wellington\unicamp\loja-artigos-esportivos-c\menu.c
 	<stdio.h>

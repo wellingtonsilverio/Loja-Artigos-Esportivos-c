@@ -2,22 +2,22 @@
 #define SALES_H
 
 //structs(todas possuem base em "listas ligadas" - possuem um ponteiro para o prox item da lista).
-typedef struct sales{
+typedef struct sale{
   int codProduto;
   float valor;
   int qtd;
-  struct sales *prox;
-} vendas;
+  struct sale *prox;
+} venda;
 
 typedef struct cart{
-  vendas *lista;
+  venda *lista;
   int codVenda;
   int CPF;
   int pagamento;
   struct cart *prox;
 } carrinho;
 
-vendas *pegarUltimaVenda(vendas **);
+venda *pegarUltimaVenda(venda **);
 
 void excluirCarrinho(carrinho **);
 void formaPagamento(carrinho **, int);

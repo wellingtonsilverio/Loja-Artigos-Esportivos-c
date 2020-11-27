@@ -68,8 +68,8 @@ carrinho *pegarUltimoCarrinho2(carrinho **lista, int codVenda){
 }
 
 //pegarUltimaVenda: recebe a lista de carrinhos e retorna o ultimo.
-vendas *pegarUltimaVenda(vendas **lista){
-  vendas *p = (*lista);
+venda *pegarUltimaVenda(venda **lista){
+  venda *p = (*lista);
 
   while (p->prox != NULL){
     p = p->prox;
@@ -92,8 +92,8 @@ int procuraCarrinho(carrinho **lista, int cpf, int codSale){
 }
 
 //criaListaVendas: ao adicionar um novo carrinho, o mesmo usa seu ponteiro para criar uma lista de compras do mesmo.
-void criaListaVendas(vendas **iniVendas){
-  *iniVendas = (vendas *)malloc(sizeof(vendas));
+void criaListaVendas(venda **iniVendas){
+  *iniVendas = (venda *)malloc(sizeof(venda));
 
   (*iniVendas)->codProduto = 0;
   (*iniVendas)->prox = NULL;

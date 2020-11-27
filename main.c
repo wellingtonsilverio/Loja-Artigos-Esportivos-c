@@ -8,29 +8,33 @@
 #include "main.h"
 #include "menu.h"
 
-cliente *iniCliente;
-estoque *iniEstoque;
-carrinho *iniCarrinho;
+cliente *clients;
+estoque *stocks;
+carrinho *carts;
+venda *sales;
 
 int main()
 {
-	criarListas(&iniCliente, &iniEstoque, &iniCarrinho);
+	criarListas();
 
-	menu(&iniCliente, &iniEstoque, &iniCarrinho);
+	menu(&clients, &stocks, &carts);
 
 	return 0;
 }
 
 //criaListas: cria as listas existente no software usando os ponteiros de ponteiros recebidos na entrada(CPF, codigo e cod de venda comecam com 0).
-void criarListas(cliente **iniCliente, estoque **iniEstoque, carrinho **iniCarrinho){
-  *iniCliente = (cliente *)malloc(sizeof(cliente));
-  *iniEstoque = (estoque *)malloc(sizeof(estoque));
-  *iniCarrinho = (carrinho *)malloc(sizeof(carrinho));
+void criarListas(){
+  clients = (cliente *)malloc(sizeof(cliente));
+  stocks = (estoque *)malloc(sizeof(estoque));
+  carts = (carrinho *)malloc(sizeof(carrinho));
+  sales = (venda *)malloc(sizeof(venda));
 
-  (*iniCliente)->CPF = 0;
-  (*iniCliente)->prox = NULL;
-  (*iniEstoque)->codigo = 0;
-  (*iniEstoque)->prox = NULL;
-  (*iniCarrinho)->codVenda = 0;
-  (*iniCarrinho)->prox = NULL;
+  (clients)->CPF = 0;
+  (clients)->prox = NULL;
+  (stocks)->codigo = 0;
+  (stocks)->prox = NULL;
+  (carts)->codVenda = 0;
+  (carts)->prox = NULL;
+  (sales)->codProduto = 0;
+  (sales)->prox = NULL;
 }
