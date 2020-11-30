@@ -8,7 +8,7 @@
 #include "shopping_cart.h"
 #include "getVariables.h"
 
-void menu(Client **iniCliente, estoque **iniEstoque, carrinho **iniCarrinho)
+void menu()
 {
 	// Variaveis
 	int cpf, cliente, estoque;
@@ -35,13 +35,14 @@ void menu(Client **iniCliente, estoque **iniEstoque, carrinho **iniCarrinho)
 		printf("\n\tCADASTRAR PRODUTO:\n");
 		printf("\tDigite o codigo do produto: ");
 		scanf("%d", &codigoProduto);
-		if (procuraEstoque(&iniEstoque, codigoProduto) == 1)
+		if (getStockByCode(codigoProduto) != NULL)
 		{
 			printf("\tERRO! - codigo ja cadastrado!\n");
 		}
 		else
 		{
-			cadastrarEstoque(&iniEstoque, codigoProduto);
+			createStock(codigoProduto, getString("\tNome: "), getFloat("\tPreco: "), getInt("\tQuantidade: "));
+
 		}
 		break;
 	case 2:
@@ -59,32 +60,36 @@ void menu(Client **iniCliente, estoque **iniEstoque, carrinho **iniCarrinho)
 		break;
 	case 3:
 		printf("\tCADASTRAR VENDA:\n");
-		codVenda = cadastrarCarrinho(&iniCarrinho);
-		loopVendas = 1;
-		while (loopVendas == 1)
-		{
-			printf("\tInforme o codigo do produto: ");
-			scanf("%d", &codigoProduto);
-			printf("\tInforme a quantidade: ");
-			scanf("%d", &quantidade);
-			if (checkEstoque(&iniEstoque, codigoProduto, quantidade) == 1)
-			{
-				printf("\tNova Venda - \n");
-				carrinho *myC = pegarUltimoCarrinho2(&iniCarrinho, codVenda);
-				cadastrarVendas(&(myC)->lista, &iniEstoque, codigoProduto, quantidade);
-				printf("\tDeseja adicionar um novo item?(1-sim, 0-nao): ");
-				scanf("%d", &loopVendas);
-			}
-			else
-			{
-				printf("\tProduto nao existe ou esta fora de estoque!\n");
-			}
+
+
+		cpf = getInt("\tCPF: ");
+		if (getClientByCPF(cpf) != NULL) {
+            codVenda = getInt("\tCodigo de venda: ");
+            if (getCardByCode(codVenda) == NULL) {
+                loopVendas = 1;
+                Sale* lastSale = getLastSale();
+
+                do {
+                    printf("\tInforme o codigo do produto: ");
+                    scanf("%d", &codigoProduto);
+                    printf("\tInforme a quantidade: ");
+                    scanf("%d", &quantidade);
+                    Stock* product = getStockByCode(codigoProduto);
+                    if (product != NULL && product->qtd >= quantidade) {
+                        createSale(codigoProduto, codVenda, product->valor * quantidade, quantidade);
+
+                        loopVendas = getInt("\tDeseja adicionar um novo item?(1-sim, 0-nao): ");
+                    } else {
+                        printf("\tProduto nao existe ou esta fora de estoque!\n");
+                    }
+                } while (loopVendas == 1);
+
+                createCard(codVenda, cpf, getInt("\tForma de pagamento(0-credito, 1-debito): "), getNextSale(lastSale));
+            }
 		}
 
-		printf("\tForma de pagamento(0-credito, 1-debito): ");
-		scanf("%d", &pagamento);
-		formaPagamento(pegarUltimoCarrinho2(&iniCarrinho, codVenda), pagamento);
 		printf("\tPagamento efetuado com sucesso!!\n");
+
 		break;
 	case 4:
 		printf("\tTROCAR PRODUTO:\n");
@@ -92,9 +97,10 @@ void menu(Client **iniCliente, estoque **iniEstoque, carrinho **iniCarrinho)
 		scanf("%d", &codigoVenda);
 		printf("\tInforme o codigo do produto: ");
 		scanf("%d", &codigoProduto);
-		if (procuraCarrinho(&iniCarrinho, cpf, codigoVenda) == 1)
+		Card* card = getCardByCode(codigoVenda);
+		if (card != NULL)
 		{
-			trocaItem(&iniCarrinho, &iniEstoque, codigoVenda, codigoProduto);
+			refound(codigoVenda, codigoProduto);
 			printf("\tProduto trocado com sucesso!!\n");
 		}
 		else
@@ -128,7 +134,16 @@ void menu(Client **iniCliente, estoque **iniEstoque, carrinho **iniCarrinho)
 			printf("\tALTERAR PRODUTO:\n");
 			printf("\tDigite o codigo do produto: ");
 			scanf("%d", &codigoProduto);
-			modificarEstoque(&iniEstoque, codigoProduto);
+
+			if (getStockByCode(codigoProduto) != NULL) {
+                printf("\tPRODUTO ENCONTRADO! - Alterar cadastro\n");
+
+                updateStockByCode(codigoProduto, getString("\tNome: "), getFloat("\tValor(R$): "), getInt("\tQuantidade: "));
+
+                printf("\tEstoque - alteracao\n");
+			} else {
+                printf("\tERRO - Estoque nao encontrado!!!\n");
+			}
 			break;
 		case 3:
 			printf("\tEXCLUIR CLIENTE:\n");
@@ -151,32 +166,32 @@ void menu(Client **iniCliente, estoque **iniEstoque, carrinho **iniCarrinho)
 			break;
 		case 4:
 			printf("\tEXCLUIR PRODUTO:\n");
-			printf("\tDigite o codigo do produto: ");
-			scanf("%d", &codigoProduto);
-			if (procuraEstoque(&iniEstoque, codigoProduto) == 1)
-			{
-				printf("\tVoce tem certeza?(1-Sim, 0-Nao): ");
-				scanf("%d", &opcao);
-				if (opcao == 1)
-				{
-					excluirEstoque(pegarEstoque(&iniEstoque, codigoProduto));
-					printf("\tITEM EXCLUIDO COM SUCESSO!!!\n");
-				}
-			}
-			else
-			{
-				printf("\tERRO! - nao foi possivel encontrar o CPF!\n");
-			}
+//			printf("\tDigite o codigo do produto: ");
+//			scanf("%d", &codigoProduto);
+//			if (procuraEstoque(&iniEstoque, codigoProduto) == 1)
+//			{
+//				printf("\tVoce tem certeza?(1-Sim, 0-Nao): ");
+//				scanf("%d", &opcao);
+//				if (opcao == 1)
+//				{
+//					excluirEstoque(pegarEstoque(&iniEstoque, codigoProduto));
+//					printf("\tITEM EXCLUIDO COM SUCESSO!!!\n");
+//				}
+//			}
+//			else
+//			{
+//				printf("\tERRO! - nao foi possivel encontrar o CPF!\n");
+//			}
 			break;
 		default:
 			printf("\tERRO! - opcao invalida\n");
 		}
 		break;
 	case 6:
-		imprimeCarrinhos(&iniCarrinho, &iniEstoque);
+		printCards();
 		break;
 	case 7:
-		imprimeEstoque(&iniEstoque);
+		printStock();
 		break;
 	case 8:
 		printf("\n\tObrigado por usar o Sistema - Loja de Artigos Esportivos\n");
@@ -188,8 +203,15 @@ void menu(Client **iniCliente, estoque **iniEstoque, carrinho **iniCarrinho)
 	if (menuOpcao != 8)
 	{
 		pressioneZero();
-		menu(&iniCliente, &iniEstoque, &iniCarrinho);
+		menu();
+
+		return;
 	}
+
+	freeSale();
+	freeCard();
+	freeStock();
+	freeClient();
 }
 
 void pressioneZero(){

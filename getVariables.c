@@ -10,6 +10,16 @@ int getInt(char* title){
     return aux;
 }
 
+float getFloat(char* title){
+    float aux;
+
+    printf(title);
+
+    scanf("%f", &aux);
+
+    return aux;
+}
+
 char* getString(char* title){
     char aux[100];
 

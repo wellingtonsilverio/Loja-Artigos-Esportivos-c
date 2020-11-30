@@ -72,6 +72,7 @@ Client* getClientByCPF(int CPF) {
 
     return client;
 }
+
 void updateClientByCPF(int CPF, char* name, int phone, char* email) {
     Client* client = getClientByCPF(CPF);
 
@@ -92,5 +93,9 @@ void deleteClientByCPF(int CPF) {
     *client = *getNextClient(aux);
 
     free(aux);
+}
+
+void freeClient(){
+    free(clients);
 }
 

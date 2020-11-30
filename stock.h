@@ -8,16 +8,16 @@ typedef struct stock{
   float valor;
   int qtd;
   struct stock *prox;
-} estoque;
+} Stock;
 
-void cadastrarEstoque(estoque **, int);
-void modificarEstoque(estoque **, int);
-void excluirEstoque(estoque *);
-int checkEstoque(estoque **, int, int);
-float recebeValor(estoque **, int);
-estoque *pegarUltimoEstoque(estoque **);
-int procuraEstoque(estoque **, int);
-estoque *pegarEstoque(estoque **, int);
-void imprimeEstoque(estoque **);
+void createStock(int, char*, float, int);
+Stock* getFirstStock();
+Stock* getNextStock(Stock*);
+Stock* getLastStock();
+Stock* getStockByCode(int);
+void updateStockByCode(int, char*, float, int);
+void deleteStockByCode(int);
+void printStock();
+void freeStock();
 
 #endif

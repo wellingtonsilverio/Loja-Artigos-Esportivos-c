@@ -4,27 +4,40 @@
 //structs(todas possuem base em "listas ligadas" - possuem um ponteiro para o prox item da lista).
 typedef struct sale{
   int codProduto;
+  int codVenda;
   float valor;
   int qtd;
   struct sale *prox;
-} venda;
+} Sale;
 
 typedef struct cart{
-  venda *lista;
   int codVenda;
   int CPF;
   int pagamento;
+  Sale *sales;
   struct cart *prox;
-} carrinho;
+} Card;
 
-venda *pegarUltimaVenda(venda **);
+void createSale(int, int, float, int);
+Sale* getFirstSale();
+Sale* getNextSale(Sale*);
+Sale* getLastSale();
+Sale* getSaleByCode(int);
+Sale* getSpecificSaleByCode(Sale*, int);
+void updateSaleByCode(int, float, int);
+void deleteSaleByCode(int);
+void printSale(Sale*);
+void freeSale();
 
-void excluirCarrinho(carrinho **);
-void formaPagamento(carrinho **, int);
-carrinho *pegarUltimoCarrinho(carrinho **);
-carrinho *pegarUltimoCarrinho2(carrinho **, int codVenda);
-int cadastrarCarrinho(carrinho **);
-int procuraCarrinho(carrinho **, int, int);
+void createCard(int, int, int, Sale*);
+Card* getFirstCard();
+Card* getNextCard(Card*);
+Card* getLastCard();
+Card* getCardByCode(int);
+void updateCardByCode(int, int, int);
+void deleteCardByCode(int);
+void printCards();
+void freeCard();
 
 
 #endif
