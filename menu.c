@@ -86,9 +86,12 @@ void menu()
 
                 createCard(codVenda, cpf, getInt("\tForma de pagamento(0-credito, 1-debito): "), getNextSale(lastSale));
             }
+            printf("\tPagamento efetuado com sucesso!!\n");
+		} else {
+		    printf("\CPF não existe no sistema!!\n");
 		}
 
-		printf("\tPagamento efetuado com sucesso!!\n");
+
 
 		break;
 	case 4:
@@ -166,22 +169,22 @@ void menu()
 			break;
 		case 4:
 			printf("\tEXCLUIR PRODUTO:\n");
-//			printf("\tDigite o codigo do produto: ");
-//			scanf("%d", &codigoProduto);
-//			if (procuraEstoque(&iniEstoque, codigoProduto) == 1)
-//			{
-//				printf("\tVoce tem certeza?(1-Sim, 0-Nao): ");
-//				scanf("%d", &opcao);
-//				if (opcao == 1)
-//				{
-//					excluirEstoque(pegarEstoque(&iniEstoque, codigoProduto));
-//					printf("\tITEM EXCLUIDO COM SUCESSO!!!\n");
-//				}
-//			}
-//			else
-//			{
-//				printf("\tERRO! - nao foi possivel encontrar o CPF!\n");
-//			}
+			printf("\tDigite o codigo do produto: ");
+			scanf("%d", &codigoProduto);
+			if (getStockByCode(codigoProduto) != NULL)
+			{
+				printf("\tVoce tem certeza?(1-Sim, 0-Nao): ");
+				scanf("%d", &opcao);
+				if (opcao == 1)
+				{
+					deleteStockByCode(codigoProduto);
+					printf("\tITEM EXCLUIDO COM SUCESSO!!!\n");
+				}
+			}
+			else
+			{
+				printf("\tERRO! - nao foi possivel encontrar o Codigo do produto!\n");
+			}
 			break;
 		default:
 			printf("\tERRO! - opcao invalida\n");

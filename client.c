@@ -41,8 +41,6 @@ Client* getFirstClient() {
 
 Client* getNextClient(Client* client){
     if (client == NULL) {
-        client = (Client*) malloc(sizeof(Client));
-
         return client;
     }
 
@@ -52,10 +50,10 @@ Client* getNextClient(Client* client){
 Client* getLastClient(){
     Client* client = getFirstClient();
     while (1) {
-        if (client->prox == NULL) {
+        if (getNextClient(client) == NULL) {
             return client;
         }
-        client = client->prox;
+        client = getNextClient(client);
     }
 }
 
@@ -66,7 +64,7 @@ Client* getClientByCPF(int CPF) {
         return;
     }
 
-    while (client->CPF != CPF) {
+    while (client != NULL && client->CPF != CPF) {
         client = client->prox;
     }
 
@@ -90,7 +88,9 @@ void deleteClientByCPF(int CPF) {
     Client* aux = (Client*) malloc(sizeof(Client));
 
     *aux = *client;
-    *client = *getNextClient(aux);
+    if (getNextClient(aux) != NULL) {
+        *client = *getNextClient(aux);
+    }
 
     free(aux);
 }

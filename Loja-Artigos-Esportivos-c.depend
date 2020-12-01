@@ -31,7 +31,7 @@
 
 1606588256 c:\users\wellington\unicamp\loja-artigos-esportivos-c\shopping_cart.h
 
-1606706894 source:c:\users\wellington\unicamp\loja-artigos-esportivos-c\sales.c
+1606793687 source:c:\users\wellington\unicamp\loja-artigos-esportivos-c\sales.c
 	<stdio.h>
 	<stdlib.h>
 	"sales.h"
@@ -42,13 +42,12 @@
 	"sales.h"
 	"stock.h"
 
-1606791474 source:c:\users\wellington\unicamp\loja-artigos-esportivos-c\stock.c
+1606793305 source:c:\users\wellington\unicamp\loja-artigos-esportivos-c\stock.c
 	<stdio.h>
 	<stdlib.h>
-	<string.h>
 	"stock.h"
 
-1606790755 source:c:\users\wellington\unicamp\loja-artigos-esportivos-c\menu.c
+1606793417 source:c:\users\wellington\unicamp\loja-artigos-esportivos-c\menu.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -59,7 +58,7 @@
 	"shopping_cart.h"
 	"getVariables.h"
 
-1606791456 source:c:\users\wellington\unicamp\loja-artigos-esportivos-c\client.c
+1606793614 source:c:\users\wellington\unicamp\loja-artigos-esportivos-c\client.c
 	<stdio.h>
 	<stdlib.h>
 	"client.h"

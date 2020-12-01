@@ -43,8 +43,6 @@ Sale* getFirstSale() {
 
 Sale* getNextSale(Sale* sale){
     if (sale == NULL) {
-        sale = (Sale*) malloc(sizeof(Sale));
-
         return sale;
     }
 
@@ -54,10 +52,10 @@ Sale* getNextSale(Sale* sale){
 Sale* getLastSale(){
     Sale* sale = getFirstSale();
     while (1) {
-        if (sale->prox == NULL) {
+        if (getNextSale(sale) == NULL) {
             return sale;
         }
-        sale = sale->prox;
+        sale = getNextSale(sale);
     }
 }
 
@@ -68,7 +66,7 @@ Sale* getSaleByCode(int code){
         return;
     }
 
-    while (sale->codProduto != code) {
+    while (sale != NULL && sale->codProduto != code) {
         sale = sale->prox;
     }
 
@@ -106,7 +104,9 @@ void deleteSaleByCode(int code){
     Sale* aux = (Sale*) malloc(sizeof(Sale));
 
     *aux = *sale;
-    *sale = *getNextSale(aux);
+    if (getNextSale(aux) != NULL) {
+        *sale = *getNextSale(aux);
+    }
 
     free(aux);
 }
@@ -186,10 +186,10 @@ Card* getNextCard(Card* card){
 Card* getLastCard(){
     Card* card = getFirstCard();
     while (1) {
-        if (card->prox == NULL) {
+        if (getNextCard(card) == NULL) {
             return card;
         }
-        card = card->prox;
+        card = getNextCard(card);
     }
 }
 
@@ -200,7 +200,7 @@ Card* getCardByCode(int code){
         return;
     }
 
-    while (card->codVenda != code) {
+    while (card != NULL && card->codVenda != code) {
         card = card->prox;
     }
 
@@ -226,7 +226,9 @@ void deleteCardByCode(int code){
     Card* aux = (Card*) malloc(sizeof(Card));
 
     *aux = *card;
-    *card = *getNextCard(aux);
+    if (getNextCard(aux) != NULL) {
+        *card = *getNextCard(aux);
+    }
 
     free(aux);
 }

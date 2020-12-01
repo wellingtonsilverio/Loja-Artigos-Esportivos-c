@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include "stock.h"
 
 Stock *stocks;
@@ -42,8 +41,6 @@ Stock* getFirstStock() {
 
 Stock* getNextStock(Stock* stock){
     if (stock == NULL) {
-        stock = (Stock*) malloc(sizeof(Stock));
-
         return stock;
     }
 
@@ -52,11 +49,12 @@ Stock* getNextStock(Stock* stock){
 
 Stock* getLastStock(){
     Stock* stock = getFirstStock();
+
     while (1) {
-        if (stock->prox == NULL) {
+        if (getNextStock(stock) == NULL) {
             return stock;
         }
-        stock = stock->prox;
+        stock = getNextStock(stock);
     }
 }
 
@@ -67,8 +65,8 @@ Stock* getStockByCode(int code) {
         return;
     }
 
-    while (stock->codigo != code) {
-        stock = stock->prox;
+    while (stock != NULL && stock->codigo != code) {
+        stock = getNextStock(stock);
     }
 
     return stock;
@@ -90,7 +88,11 @@ void deleteStockByCode(int code) {
     Stock* aux = (Stock*) malloc(sizeof(Stock));
 
     *aux = *stock;
-    *stock = *getNextStock(aux);
+    if (getNextStock(aux) != NULL) {
+        *stock = *getNextStock(aux);
+    } else {
+       free(stock);
+    }
 
     free(aux);
 }
@@ -100,9 +102,13 @@ void printStock(){
 
     printf("\n\t--------------------------------------------------------------------\n");
     printf("\n\tCOD.PRODUTO       NOME       VALOR       QUANTIDADE");
-    while (stock != NULL) {
+    while (stock != NULL && stock->codigo != 0) {
 
-        printf("\n\t#%-10d    %s    %.2f    %d\n", stock->codigo, stock->nome, stock->valor, stock->qtd);
+        if (stock->valor >= 0) {
+            printf("\n\t#%-10d    %s    %.2f    %d\n", stock->codigo, stock->nome, stock->valor, stock->qtd);
+        } else {
+            printf("\n\t#%-10d    %s    TROCA\n", stock->codigo, stock->nome);
+        }
 
         stock = getNextCard(stock);
     }
