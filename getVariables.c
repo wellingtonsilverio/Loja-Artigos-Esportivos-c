@@ -21,7 +21,7 @@ float getFloat(char* title){
 }
 
 char* getString(char* title){
-    char aux[100];
+    char* aux = (char*) malloc(sizeof(char) * 100);
 
     printf(title);
 

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "stock.h"
 
 Stock *stocks;
@@ -9,7 +10,7 @@ void createStock(int code, char* name, float price, int amount) {
     Stock* lastStock = getLastStock();
 
     if (lastStock->codigo == 0) {
-        *lastStock->nome = name;
+        lastStock->nome = name;
         lastStock->codigo = code;
         lastStock->valor = price;
         lastStock->qtd = amount;
@@ -18,7 +19,7 @@ void createStock(int code, char* name, float price, int amount) {
         return;
     }
 
-    *child->nome = name;
+    child->nome = name;
     child->codigo = code;
     child->valor = price;
     child->qtd = amount;
@@ -79,7 +80,7 @@ void updateStockByCode(int code, char* name, float price, int amount) {
         return;
     }
 
-    *stock->nome = name;
+    stock->nome = name;
     stock->valor = price;
     stock->qtd = amount;
 }
@@ -101,7 +102,7 @@ void printStock(){
     printf("\n\tCOD.PRODUTO       NOME       VALOR       QUANTIDADE");
     while (stock != NULL) {
 
-        printf("\n\t#%-10d    %s    %.2f    %d\n", stock->codigo, *stock->nome, stock->valor, stock->qtd);
+        printf("\n\t#%-10d    %s    %.2f    %d\n", stock->codigo, stock->nome, stock->valor, stock->qtd);
 
         stock = getNextCard(stock);
     }

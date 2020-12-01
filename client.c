@@ -9,19 +9,19 @@ void createClient(char* name, int CPF, int phone, char* email) {
     Client* lastClient = getLastClient();
 
     if (lastClient->CPF == 0) {
-        *lastClient->nome = name;
+        lastClient->nome = name;
         lastClient->CPF = CPF;
         lastClient->fone = phone;
-        *lastClient->email = email;
+        lastClient->email = email;
         lastClient->prox = NULL;
 
         return;
     }
 
-    *child->nome = name;
+    child->nome = name;
     child->CPF = CPF;
     child->fone = phone;
-    *child->email = email;
+    child->email = email;
     child->prox = NULL;
 
     lastClient->prox = child;
@@ -80,9 +80,9 @@ void updateClientByCPF(int CPF, char* name, int phone, char* email) {
         return;
     }
 
-    *client->nome = name;
+    client->nome = name;
     client->fone = phone;
-    *client->email = email;
+    client->email = email;
 }
 
 void deleteClientByCPF(int CPF) {

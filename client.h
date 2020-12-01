@@ -3,10 +3,10 @@
 
 //structs(todas possuem base em "listas ligadas" - possuem um ponteiro para o prox item da lista).
 typedef struct client{
-  char nome[100];
+  char* nome;
   int CPF;
   int fone;
-  char email[100];
+  char* email;
   struct Client *prox;
 } Client;
 
