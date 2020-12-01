@@ -129,6 +129,7 @@ void printStock(){
     printf("\n\t--------------------------------------------------------------------\n");
 }
 
+//freeStock: libera a memoria da lista em estoque.
 void freeStock(){
     free(stocks);
 }
