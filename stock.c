@@ -29,6 +29,10 @@ void createStock(int code, char* name, float price, int amount) {
     return;
 }
 
+Stock* getStock() {
+    return stocks;
+}
+
 Stock* getFirstStock() {
     if (stocks == NULL) {
         stocks = (Stock*) malloc(sizeof(Stock));

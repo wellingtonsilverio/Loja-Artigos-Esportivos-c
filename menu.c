@@ -25,7 +25,9 @@ void menu()
 	printf("\t5. Modificar registros\n");
 	printf("\t6. Vendas\n");
 	printf("\t7. Estoque\n");
-	printf("\t8. Sair\n");
+	printf("\t8. Salvar dados\n");
+	printf("\t9. Carregar dados\n");
+	printf("\t0. Sair\n");
 	printf("\n\tSelecione a opcao desejada: ");
 	scanf("%d", &menuOpcao);
 
@@ -197,13 +199,19 @@ void menu()
 		printStock();
 		break;
 	case 8:
+		saveAll();
+		break;
+	case 9:
+		loadAll();
+		break;
+	case 0:
 		printf("\n\tObrigado por usar o Sistema - Loja de Artigos Esportivos\n");
 		break;
 	default:
 		printf("\n\tERRO! - opcao invalida\n");
 		}
 
-	if (menuOpcao != 8)
+	if (menuOpcao != 0)
 	{
 		pressioneZero();
 		menu();

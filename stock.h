@@ -11,6 +11,7 @@ typedef struct stock{
 } Stock;
 
 void createStock(int, char*, float, int);
+Stock* getStock();
 Stock* getFirstStock();
 Stock* getNextStock(Stock*);
 Stock* getLastStock();
