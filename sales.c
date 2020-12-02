@@ -125,6 +125,59 @@ void printSale(Sale* sale) {
     }
 }
 
+void persistSale(){
+    FILE *file;
+
+    file = fopen("sale.bin", "w+b");
+
+    if (file == NULL) {
+        return;
+    }
+
+    Sale* sale = getFirstSale();
+
+    while (sale != NULL) {
+        fwrite(sale, sizeof(Sale), 1, file);
+        sale = getNextSale(sale);
+    }
+
+    fclose(file);
+}
+
+void loadSale(){
+    FILE *file;
+
+    file = fopen("sale.bin", "rb");
+
+    if (file == NULL) {
+        return;
+    }
+
+    freeSale();
+
+    while(1){
+        Sale* sale = getFirstSale();
+        Sale* read = (Sale*) malloc(sizeof(Sale));
+
+        size_t r = fread(read, sizeof(Sale), 1, file);
+
+
+
+        if (r < 1) {
+            break;
+        } else {
+            if (sale->codProduto == 0) {
+                *sale = *read;
+            } else {
+                sale->prox = read;
+            }
+
+        }
+    }
+
+    fclose(file);
+}
+
 void freeSale(){
     free(sales);
 }
@@ -250,6 +303,59 @@ void printCards(){
         printf("\n\t--------------------------------------------------------------------\n");
         card = getNextCard(card);
     }
+}
+
+void persistCard(){
+    FILE *file;
+
+    file = fopen("stock.bin", "w+b");
+
+    if (file == NULL) {
+        return;
+    }
+
+    Card* card = getFirstCard();
+
+    while (card != NULL) {
+        fwrite(card, sizeof(Card), 1, file);
+        card = getNextCard(card);
+    }
+
+    fclose(file);
+}
+
+void loadCard(){
+    FILE *file;
+
+    file = fopen("card.bin", "rb");
+
+    if (file == NULL) {
+        return;
+    }
+
+    freeCard();
+
+    while(1){
+        Card* card = getFirstCard();
+        Card* read = (Card*) malloc(sizeof(Card));
+
+        size_t r = fread(read, sizeof(Card), 1, file);
+
+
+
+        if (r < 1) {
+            break;
+        } else {
+            if (card->codVenda == 0) {
+                *card = *read;
+            } else {
+                card->prox = read;
+            }
+
+        }
+    }
+
+    fclose(file);
 }
 
 void freeCard(){

@@ -95,6 +95,59 @@ void deleteClientByCPF(int CPF) {
     free(aux);
 }
 
+void persistClient(){
+    FILE *file;
+
+    file = fopen("client.bin", "w+b");
+
+    if (file == NULL) {
+        return;
+    }
+
+    Client* client = getFirstClient();
+
+    while (client != NULL) {
+        fwrite(client, sizeof(Client), 1, file);
+        client = getNextClient(client);
+    }
+
+    fclose(file);
+}
+
+void loadClient(){
+    FILE *file;
+
+    file = fopen("client.bin", "rb");
+
+    if (file == NULL) {
+        return;
+    }
+
+    freeClient();
+
+    while(1){
+        Client* client = getFirstClient();
+        Client* read = (Client*) malloc(sizeof(Client));
+
+        size_t r = fread(read, sizeof(Client), 1, file);
+
+
+
+        if (r < 1) {
+            break;
+        } else {
+            if (client->CPF == 0) {
+                *client = *read;
+            } else {
+                client->prox = read;
+            }
+
+        }
+    }
+
+    fclose(file);
+}
+
 void freeClient(){
     free(clients);
 }

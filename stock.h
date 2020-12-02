@@ -19,6 +19,8 @@ Stock* getStockByCode(int);
 void updateStockByCode(int, char*, float, int);
 void deleteStockByCode(int);
 void printStock();
+void persistStock();
+void loadStock();
 void freeStock();
 
 #endif

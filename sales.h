@@ -27,6 +27,8 @@ Sale* getSpecificSaleByCode(Sale*, int);
 void updateSaleByCode(int, float, int);
 void deleteSaleByCode(int);
 void printSale(Sale*);
+void persistSale();
+void loadSale();
 void freeSale();
 
 void createCard(int, int, int, Sale*);
@@ -37,6 +39,8 @@ Card* getCardByCode(int);
 void updateCardByCode(int, int, int);
 void deleteCardByCode(int);
 void printCards();
+void persistCard();
+void loadCard();
 void freeCard();
 
 

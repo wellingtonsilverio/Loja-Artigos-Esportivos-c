@@ -119,6 +119,59 @@ void printStock(){
     printf("\n\t--------------------------------------------------------------------\n");
 }
 
+void persistStock(){
+    FILE *file;
+
+    file = fopen("stock.bin", "w+b");
+
+    if (file == NULL) {
+        return;
+    }
+
+    Stock* stock = getFirstStock();
+
+    while (stock != NULL) {
+        fwrite(stock, sizeof(Stock), 1, file);
+        stock = getNextStock(stock);
+    }
+
+    fclose(file);
+}
+
+void loadStock(){
+    FILE *file;
+
+    file = fopen("stock.bin", "rb");
+
+    if (file == NULL) {
+        return;
+    }
+
+    freeStock();
+
+    while(1){
+        Stock* stock = getFirstStock();
+        Stock* read = (Stock*) malloc(sizeof(Stock));
+
+        size_t r = fread(read, sizeof(Stock), 1, file);
+
+
+
+        if (r < 1) {
+            break;
+        } else {
+            if (stock->codigo == 0) {
+                *stock = *read;
+            } else {
+                stock->prox = read;
+            }
+
+        }
+    }
+
+    fclose(file);
+}
+
 void freeStock(){
     free(stocks);
 }

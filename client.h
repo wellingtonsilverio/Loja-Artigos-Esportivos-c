@@ -17,6 +17,8 @@ Client* getLastClient();
 Client* getClientByCPF(int);
 void updateClientByCPF(int, char*, int, char*);
 void deleteClientByCPF(int);
+void persistClient();
+void loadClient();
 void freeClient();
 
 #endif
