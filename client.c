@@ -102,6 +102,7 @@ void deleteClientByCPF(int CPF) {
     free(aux);
 }
 
+//persistClient: salva toda lista de clientes em um arquivo binario.
 void persistClient(){
     FILE *file;
 
@@ -121,6 +122,7 @@ void persistClient(){
     fclose(file);
 }
 
+//loadClient: carrega os dados da lista de clientes que estão no arquivo para a memoria do sistema.
 void loadClient(){
     FILE *file;
 
