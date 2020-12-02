@@ -4,6 +4,7 @@
 
 Stock *stocks;
 
+//createStock: recebe os dados do novo produto em estoque e o adiciona a lista(stocks).
 void createStock(int code, char* name, float price, int amount) {
     Stock* child = (Stock*) malloc(sizeof(Stock));
     Stock* lastStock = getLastStock();
@@ -29,10 +30,12 @@ void createStock(int code, char* name, float price, int amount) {
     return;
 }
 
+//getStock: retorna o estoque.
 Stock* getStock() {
     return stocks;
 }
 
+//getFirstStock: retorna o primeiro item em estoque.
 Stock* getFirstStock() {
     if (stocks == NULL) {
         stocks = (Stock*) malloc(sizeof(Stock));
@@ -43,6 +46,7 @@ Stock* getFirstStock() {
     return stocks;
 }
 
+//getNextStock: retorna o proximo item do estoque
 Stock* getNextStock(Stock* stock){
     if (stock == NULL) {
         return stock;
@@ -51,6 +55,7 @@ Stock* getNextStock(Stock* stock){
     return stock->prox;
 }
 
+//getLastStock: retorna o ultimo item da lista em estoque.
 Stock* getLastStock(){
     Stock* stock = getFirstStock();
 
@@ -62,6 +67,7 @@ Stock* getLastStock(){
     }
 }
 
+//getStockByCode: recebe o codigo do produto e retorna o produto desejado.
 Stock* getStockByCode(int code) {
     Stock* stock = getFirstStock();
 
@@ -75,6 +81,8 @@ Stock* getStockByCode(int code) {
 
     return stock;
 }
+
+//updateStockByCode:recebe os dados para atualizacao do produto, procura e modifica os dados do produto desejado.
 void updateStockByCode(int code, char* name, float price, int amount) {
     Stock* stock = getStockByCode(code);
 
@@ -87,6 +95,7 @@ void updateStockByCode(int code, char* name, float price, int amount) {
     stock->qtd = amount;
 }
 
+//deleteStockByCode: recebe o codigo do produto e exclui o mesmo da lista.
 void deleteStockByCode(int code) {
     Stock* stock = getStockByCode(code);
     Stock* aux = (Stock*) malloc(sizeof(Stock));
@@ -101,6 +110,7 @@ void deleteStockByCode(int code) {
     free(aux);
 }
 
+//printStock: imprime os dados da lista em estoque.
 void printStock(){
     Stock* stock = getFirstStock();
 
@@ -119,6 +129,7 @@ void printStock(){
     printf("\n\t--------------------------------------------------------------------\n");
 }
 
+//persistStock: salva toda lista de estoque em um arquivo binario.
 void persistStock(){
     FILE *file;
 
@@ -138,6 +149,7 @@ void persistStock(){
     fclose(file);
 }
 
+//loadStock: carrega os dados da lista de estoque que estão no arquivo para a memoria do sistema.
 void loadStock(){
     FILE *file;
 
@@ -172,6 +184,7 @@ void loadStock(){
     fclose(file);
 }
 
+//freeStock: libera a memoria da lista em estoque.
 void freeStock(){
     free(stocks);
 }

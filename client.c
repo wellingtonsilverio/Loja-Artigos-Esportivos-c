@@ -4,6 +4,7 @@
 
 Client *clients;
 
+//createClient: recebe os dados do novo cliente, e o adiciona a lista de clientes.
 void createClient(char* name, int CPF, int phone, char* email) {
     Client* child = (Client*) malloc(sizeof(Client));
     Client* lastClient = getLastClient();
@@ -29,6 +30,7 @@ void createClient(char* name, int CPF, int phone, char* email) {
     return;
 }
 
+//getFirstClient: retorna o primeiro cliente.
 Client* getFirstClient() {
     if (clients == NULL) {
         clients = (Client*) malloc(sizeof(Client));
@@ -39,6 +41,7 @@ Client* getFirstClient() {
     return clients;
 }
 
+//getNextClient: retorna o proximo cliente da lista.
 Client* getNextClient(Client* client){
     if (client == NULL) {
         return client;
@@ -47,6 +50,7 @@ Client* getNextClient(Client* client){
     return client->prox;
 }
 
+//getLastClient: retorna o ultimo cliente da lista.
 Client* getLastClient(){
     Client* client = getFirstClient();
     while (1) {
@@ -57,6 +61,7 @@ Client* getLastClient(){
     }
 }
 
+//getClientByCPF: recebe o CPF, e retorna o cliente correspondente.
 Client* getClientByCPF(int CPF) {
     Client* client = getFirstClient();
 
@@ -71,6 +76,7 @@ Client* getClientByCPF(int CPF) {
     return client;
 }
 
+//updateClientByCPF: recebe os dados para atualizacao do cliente, o modifica seu registro na lista de clientes.
 void updateClientByCPF(int CPF, char* name, int phone, char* email) {
     Client* client = getClientByCPF(CPF);
 
@@ -83,6 +89,7 @@ void updateClientByCPF(int CPF, char* name, int phone, char* email) {
     client->email = email;
 }
 
+//deleteClientByCPF: recebe o CPF do cliente a ser excluido, e o exclui da lista de clientes.
 void deleteClientByCPF(int CPF) {
     Client* client = getClientByCPF(CPF);
     Client* aux = (Client*) malloc(sizeof(Client));
@@ -148,6 +155,7 @@ void loadClient(){
     fclose(file);
 }
 
+//freeClient: libera a memoria da lista de clientes.
 void freeClient(){
     free(clients);
 }
