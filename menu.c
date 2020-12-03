@@ -8,8 +8,8 @@
 #include "shopping_cart.h"
 #include "getVariables.h"
 
-void menu()
-{
+void menu() {
+	
 	// Variaveis
 	int cpf, cliente, estoque;
 	int codigoProduto, quantidade, codigoVenda;
@@ -37,37 +37,29 @@ void menu()
 		printf("\n\tCADASTRAR PRODUTO:\n");
 		printf("\tDigite o codigo do produto: ");
 		scanf("%d", &codigoProduto);
-		if (getStockByCode(codigoProduto) != NULL)
-		{
+		if (getStockByCode(codigoProduto) != NULL) {
 			printf("\tERRO! - codigo ja cadastrado!\n");
-		}
-		else
-		{
+		} else {
 			createStock(codigoProduto, getString("\tNome: "), getFloat("\tPreco: "), getInt("\tQuantidade: "));
-
 		}
 		break;
 	case 2:
 		printf("\tCADASTRAR CLIENTE:\n");
 		printf("\tDigite o CPF do novo cliente: ");
 		scanf("%d", &cpf);
-		if (getClientByCPF(cpf) != NULL)
-		{
+		if (getClientByCPF(cpf) != NULL) {
 			printf("\tERRO! - CPF ja cadastrado!\n");
-		}
-		else
-		{
+		} else {
 			createClient(getString("\tNome: "), cpf, getInt("\tTelefone: "), getString("\tE-mail: "));
 		}
 		break;
 	case 3:
 		printf("\tCADASTRAR VENDA:\n");
-
-
 		cpf = getInt("\tCPF: ");
 		if (getClientByCPF(cpf) != NULL) {
-            codVenda = getInt("\tCodigo de venda: ");
-            if (getCardByCode(codVenda) == NULL) {
+            		codVenda = getInt("\tCodigo de venda: ");
+		}
+            	if (getCardByCode(codVenda) == NULL) {
                 loopVendas = 1;
                 Sale* lastSale = getLastSale();
 
@@ -90,7 +82,7 @@ void menu()
             }
             printf("\tPagamento efetuado com sucesso!!\n");
 		} else {
-		    printf("\CPF n„o existe no sistema!!\n");
+		    printf("\CPF n√£o existe no sistema!!\n");
 		}
 
 
