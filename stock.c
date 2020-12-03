@@ -23,6 +23,7 @@ void createStock(int code, char* name, float price, int amount) {
     child->codigo = code;
     child->valor = price;
     child->qtd = amount;
+    child->active = 1;
     child->prox = NULL;
 
     lastStock->prox = child;
