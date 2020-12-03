@@ -6,6 +6,7 @@
 Sale *sales;
 Card *cards;
 
+//createSale: recebe os dados da venda nova, e a adiciona a lista de vendas.
 void createSale(int code, int cardCode, float price, int amount) {
     Sale* child = (Sale*) malloc(sizeof(Sale));
     Sale* lastSale = getLastSale();
@@ -31,6 +32,7 @@ void createSale(int code, int cardCode, float price, int amount) {
     return;
 }
 
+//getFirstSale: retorna o primeiro item da lista.
 Sale* getFirstSale() {
     if (sales == NULL) {
         sales = (Sale*) malloc(sizeof(Sale));
@@ -41,6 +43,7 @@ Sale* getFirstSale() {
     return sales;
 }
 
+//getNextSale: retorna o proximo item da lista.
 Sale* getNextSale(Sale* sale){
     if (sale == NULL) {
         return sale;
@@ -49,6 +52,7 @@ Sale* getNextSale(Sale* sale){
     return sale->prox;
 }
 
+//getLastSale: retorna o ultimo item da lista.
 Sale* getLastSale(){
     Sale* sale = getFirstSale();
     while (1) {
@@ -59,6 +63,7 @@ Sale* getLastSale(){
     }
 }
 
+//getSaleByCode: recebe o codigo da venda desejada, procura e retorna o mesmo.
 Sale* getSaleByCode(int code){
     Sale* sale = getFirstSale();
 
@@ -73,6 +78,7 @@ Sale* getSaleByCode(int code){
     return sale;
 }
 
+//getSpecificSaleByCode: recebe a venda e o codigo, procura e retorna o item desejado.
 Sale* getSpecificSaleByCode(Sale* sale, int code){
     if (sale == NULL || sale->codProduto == 0) {
         return;
@@ -85,6 +91,7 @@ Sale* getSpecificSaleByCode(Sale* sale, int code){
     return sale;
 }
 
+//updateSaleByCode: recebe os dados da venda a ser atualizada, e modifica o mesmo na lista.
 void updateSaleByCode(int code, float price, int amount){
     Sale* sale = getSaleByCode(code);
 
@@ -99,6 +106,7 @@ void updateSaleByCode(int code, float price, int amount){
     return;
 }
 
+//deleteSaleByCode: recebe o codigo do item a ser excluido, o procura e remove da lista.
 void deleteSaleByCode(int code){
     Sale* sale = getSaleByCode(code);
     Sale* aux = (Sale*) malloc(sizeof(Sale));
@@ -111,6 +119,7 @@ void deleteSaleByCode(int code){
     free(aux);
 }
 
+//printSale: imprime a lista de vendas
 void printSale(Sale* sale) {
     if (sale == NULL) {
         return;
