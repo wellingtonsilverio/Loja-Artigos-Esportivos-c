@@ -119,8 +119,10 @@ void printStock(){
     printf("\n\tCOD.PRODUTO       NOME       VALOR       QUANTIDADE");
     while (stock != NULL && stock->codigo != 0) {
 
-        if (stock->valor >= 0) {
+        if (stock->valor >= 0 && stock->active = 1) {
             printf("\n\t#%-10d    %s    %.2f    %d\n", stock->codigo, stock->nome, stock->valor, stock->qtd);
+        } else if(stock->active = 0) {
+            printf("\n\t#%-10d    %s    FORA ESTOQUE\n", stock->codigo, stock->nome);
         } else {
             printf("\n\t#%-10d    %s    TROCA\n", stock->codigo, stock->nome);
         }
