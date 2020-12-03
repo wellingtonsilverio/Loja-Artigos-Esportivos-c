@@ -10,7 +10,7 @@ void createStock(int code, char* name, float price, int amount) {
     Stock* lastStock = getLastStock();
 
     if (lastStock->codigo == 0) {
-        lastStock->nome = name;
+        strcpy(lastStock->nome, name);
         lastStock->codigo = code;
         lastStock->valor = price;
         lastStock->qtd = amount;
@@ -19,7 +19,7 @@ void createStock(int code, char* name, float price, int amount) {
         return;
     }
 
-    child->nome = name;
+    strcpy(child->nome, name);
     child->codigo = code;
     child->valor = price;
     child->qtd = amount;
@@ -90,7 +90,7 @@ void updateStockByCode(int code, char* name, float price, int amount) {
         return;
     }
 
-    stock->nome = name;
+    strcpy(stock->nome, name);
     stock->valor = price;
     stock->qtd = amount;
 }
@@ -160,23 +160,30 @@ void loadStock(){
     }
 
     freeStock();
+    Stock* stock = getFirstStock();
 
     while(1){
-        Stock* stock = getFirstStock();
         Stock* read = (Stock*) malloc(sizeof(Stock));
 
         size_t r = fread(read, sizeof(Stock), 1, file);
 
-
-
         if (r < 1) {
             break;
         } else {
+            if (stock == NULL) {
+                stock = (Stock*) malloc(sizeof(Stock));
+                stock->codigo = 0;
+                stock->prox = NULL;
+            }
             if (stock->codigo == 0) {
+                read->prox = NULL;
                 *stock = *read;
             } else {
+                read->prox = NULL;
                 stock->prox = read;
             }
+
+            stock = getNextStock(stock);
 
         }
     }

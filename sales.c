@@ -154,24 +154,30 @@ void loadSale(){
     }
 
     freeSale();
+    Sale* sale = getFirstSale();
 
     while(1){
-        Sale* sale = getFirstSale();
         Sale* read = (Sale*) malloc(sizeof(Sale));
 
         size_t r = fread(read, sizeof(Sale), 1, file);
 
-
-
         if (r < 1) {
             break;
         } else {
+            if (sale == NULL) {
+                sale = (Sale*) malloc(sizeof(Sale));
+                sale->codProduto = 0;
+                sale->prox = NULL;
+            }
             if (sale->codProduto == 0) {
+                read->prox = NULL;
                 *sale = *read;
             } else {
+                read->prox = NULL;
                 sale->prox = read;
             }
 
+            sale = getNextSale(sale);
         }
     }
 
@@ -308,7 +314,7 @@ void printCards(){
 void persistCard(){
     FILE *file;
 
-    file = fopen("stock.bin", "w+b");
+    file = fopen("card.bin", "w+b");
 
     if (file == NULL) {
         return;
@@ -334,23 +340,30 @@ void loadCard(){
     }
 
     freeCard();
+    Card* card = getFirstCard();
 
     while(1){
-        Card* card = getFirstCard();
         Card* read = (Card*) malloc(sizeof(Card));
 
         size_t r = fread(read, sizeof(Card), 1, file);
 
-
-
         if (r < 1) {
             break;
         } else {
+            if (card == NULL) {
+                card = (Card*) malloc(sizeof(Card));
+                card->codVenda = 0;
+                card->prox = NULL;
+            }
             if (card->codVenda == 0) {
+                read->prox = NULL;
                 *card = *read;
             } else {
+                read->prox = NULL;
                 card->prox = read;
             }
+
+            card = getNextCard(card);
 
         }
     }

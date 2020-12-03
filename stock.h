@@ -3,7 +3,7 @@
 
 //structs(todas possuem base em "listas ligadas" - possuem um ponteiro para o prox item da lista).
 typedef struct stock{
-  char* nome;
+  char nome[100];
   int codigo;
   float valor;
   int qtd;

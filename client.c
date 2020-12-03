@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "client.h"
 
 Client *clients;
@@ -10,19 +11,19 @@ void createClient(char* name, int CPF, int phone, char* email) {
     Client* lastClient = getLastClient();
 
     if (lastClient->CPF == 0) {
-        lastClient->nome = name;
+        strcpy(lastClient->nome, name);
         lastClient->CPF = CPF;
         lastClient->fone = phone;
-        lastClient->email = email;
+        strcpy(lastClient->email, email);
         lastClient->prox = NULL;
 
         return;
     }
 
-    child->nome = name;
+    strcpy(child->nome, name);
     child->CPF = CPF;
     child->fone = phone;
-    child->email = email;
+    strcpy(child->email, email);
     child->prox = NULL;
 
     lastClient->prox = child;
@@ -84,9 +85,9 @@ void updateClientByCPF(int CPF, char* name, int phone, char* email) {
         return;
     }
 
-    client->nome = name;
+    strcpy(client->nome, name);
     client->fone = phone;
-    client->email = email;
+    strcpy(client->email, email);
 }
 
 //deleteClientByCPF: recebe o CPF do cliente a ser excluido, e o exclui da lista de clientes.
@@ -133,23 +134,30 @@ void loadClient(){
     }
 
     freeClient();
+    Client* client = getFirstClient();
 
     while(1){
-        Client* client = getFirstClient();
         Client* read = (Client*) malloc(sizeof(Client));
 
         size_t r = fread(read, sizeof(Client), 1, file);
 
-
-
         if (r < 1) {
             break;
         } else {
+            if (client == NULL) {
+                client = (Client*) malloc(sizeof(Client));
+                client->CPF = 0;
+                client->prox = NULL;
+            }
             if (client->CPF == 0) {
+                read->prox = NULL;
                 *client = *read;
             } else {
+                read->prox = NULL;
                 client->prox = read;
             }
+
+            client = getNextClient(client);
 
         }
     }

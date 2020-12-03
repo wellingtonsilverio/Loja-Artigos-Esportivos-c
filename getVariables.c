@@ -20,7 +20,7 @@ float getFloat(char* title){
     return aux;
 }
 
-char* getString(char* title){
+const char* getString(char* title){
     char* aux = (char*) malloc(sizeof(char) * 100);
 
     printf(title);

@@ -3,6 +3,6 @@
 
 int getInt(char*);
 float getFloat(char*);
-char* getString(char*);
+const char* getString(char*);
 
 #endif
