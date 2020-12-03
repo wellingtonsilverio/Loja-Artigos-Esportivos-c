@@ -7,6 +7,7 @@ typedef struct stock{
   int codigo;
   float valor;
   int qtd;
+  int active;
   struct stock *prox;
 } Stock;
 
