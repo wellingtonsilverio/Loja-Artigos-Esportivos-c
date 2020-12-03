@@ -8,6 +8,7 @@
 #include "shopping_cart.h"
 #include "getVariables.h"
 
+//menu: menu interativo com o usuario.
 void menu() {
 	
 	// Variaveis
