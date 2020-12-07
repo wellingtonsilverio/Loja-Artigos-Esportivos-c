@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "stock.h"
 
 Stock *stocks;
 
 //createStock: recebe os dados do novo produto em estoque e o adiciona a lista(stocks).
 void createStock(int code, char* name, float price, int amount) {
-    Stock* child = (Stock*) malloc(sizeof(Stock));
     Stock* lastStock = getLastStock();
 
     if (lastStock->codigo == 0) {
@@ -14,10 +14,13 @@ void createStock(int code, char* name, float price, int amount) {
         lastStock->codigo = code;
         lastStock->valor = price;
         lastStock->qtd = amount;
+        lastStock->active = 1;
         lastStock->prox = NULL;
 
         return;
     }
+
+    Stock* child = (Stock*) malloc(sizeof(Stock));
 
     strcpy(child->nome, name);
     child->codigo = code;
@@ -118,16 +121,15 @@ void printStock(){
     printf("\n\t--------------------------------------------------------------------\n");
     printf("\n\tCOD.PRODUTO       NOME       VALOR       QUANTIDADE");
     while (stock != NULL && stock->codigo != 0) {
-
-        if (stock->valor >= 0 && stock->active = 1) {
+        if (stock->valor >= 0 && stock->active == 1) {
             printf("\n\t#%-10d    %s    %.2f    %d\n", stock->codigo, stock->nome, stock->valor, stock->qtd);
-        } else if(stock->active = 0) {
+        } else if(stock->active == 0) {
             printf("\n\t#%-10d    %s    FORA ESTOQUE\n", stock->codigo, stock->nome);
         } else {
             printf("\n\t#%-10d    %s    TROCA\n", stock->codigo, stock->nome);
         }
 
-        stock = getNextCard(stock);
+        stock = getNextStock(stock);
     }
     printf("\n\t--------------------------------------------------------------------\n");
 }
@@ -184,9 +186,8 @@ void loadStock(){
             } else {
                 read->prox = NULL;
                 stock->prox = read;
+                stock = getNextStock(stock);
             }
-
-            stock = getNextStock(stock);
 
         }
     }

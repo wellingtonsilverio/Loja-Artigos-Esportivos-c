@@ -10,7 +10,7 @@
 
 //menu: menu interativo com o usuario.
 void menu() {
-	
+
 	// Variaveis
 	int cpf, cliente, estoque;
 	int codigoProduto, quantidade, codigoVenda;
@@ -58,8 +58,7 @@ void menu() {
 		printf("\tCADASTRAR VENDA:\n");
 		cpf = getInt("\tCPF: ");
 		if (getClientByCPF(cpf) != NULL) {
-            		codVenda = getInt("\tCodigo de venda: ");
-		}
+                codVenda = getInt("\tCodigo de venda: ");
             	if (getCardByCode(codVenda) == NULL) {
                 loopVendas = 1;
                 Sale* lastSale = getLastSale();

@@ -13,6 +13,6 @@ void saveAll(){
 void loadAll(){
     loadClient();
     loadStock();
-    loadCard();
     loadSale();
+    loadCard();
 }

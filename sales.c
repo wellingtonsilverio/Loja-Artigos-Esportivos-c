@@ -72,7 +72,22 @@ Sale* getSaleByCode(int code){
     }
 
     while (sale != NULL && sale->codProduto != code) {
-        sale = sale->prox;
+        sale = getNextSale(sale);
+    }
+
+    return sale;
+}
+
+//getFirstSaleByCardCode: recebe o codigo da estoque desejada, procura e retorna o primeiro.
+Sale* getFirstSaleByCardCode(int cardCode) {
+    Sale* sale = getFirstSale();
+
+    if (sale == NULL || sale->codProduto == 0) {
+        return;
+    }
+
+    while (sale != NULL && sale->codVenda != cardCode) {
+        sale = getNextSale(sale);
     }
 
     return sale;
@@ -184,9 +199,8 @@ void loadSale(){
             } else {
                 read->prox = NULL;
                 sale->prox = read;
+                sale = getNextSale(sale);
             }
-
-            sale = getNextSale(sale);
         }
     }
 
@@ -332,6 +346,7 @@ void persistCard(){
     Card* card = getFirstCard();
 
     while (card != NULL) {
+        card->sales = NULL;
         fwrite(card, sizeof(Card), 1, file);
         card = getNextCard(card);
     }
@@ -370,9 +385,10 @@ void loadCard(){
             } else {
                 read->prox = NULL;
                 card->prox = read;
+                card = getNextCard(card);
             }
 
-            card = getNextCard(card);
+            card->sales = getFirstSaleByCardCode(card->codVenda);
 
         }
     }

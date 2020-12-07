@@ -23,6 +23,7 @@ Sale* getFirstSale();
 Sale* getNextSale(Sale*);
 Sale* getLastSale();
 Sale* getSaleByCode(int);
+Sale* getFirstSaleByCardCode(int);
 Sale* getSpecificSaleByCode(Sale*, int);
 void updateSaleByCode(int, float, int);
 void deleteSaleByCode(int);
