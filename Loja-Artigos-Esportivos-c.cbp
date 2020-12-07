@@ -46,6 +46,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="menu.h" />
+		<Unit filename="persist.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="persist.h" />
 		<Unit filename="sales.c">
 			<Option compilerVar="CC" />
 		</Unit>
