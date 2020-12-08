@@ -8,7 +8,6 @@ Card *cards;
 
 //createSale: recebe os dados da venda nova, e a adiciona a lista de vendas.
 void createSale(int code, int cardCode, float price, int amount) {
-    Sale* child = (Sale*) malloc(sizeof(Sale));
     Sale* lastSale = getLastSale();
 
     if (lastSale->codProduto == 0) {
@@ -20,6 +19,8 @@ void createSale(int code, int cardCode, float price, int amount) {
 
         return;
     }
+
+    Sale* child = (Sale*) malloc(sizeof(Sale));
 
     child->codProduto = code;
     child->codVenda = cardCode;
@@ -223,17 +224,15 @@ void createCard(int code, int CPF, int paymentType, Sale* sales) {
         lastCard->pagamento = paymentType;
         lastCard->sales = sales;
         lastCard->prox = NULL;
+    } else {
+        child->codVenda = code;
+        child->CPF = CPF;
+        child->pagamento = paymentType;
+        child->sales = sales;
+        child->prox = NULL;
 
-        return;
+        lastCard->prox = child;
     }
-
-    child->codVenda = code;
-    child->CPF = CPF;
-    child->pagamento = paymentType;
-    child->sales = sales;
-    child->prox = NULL;
-
-    lastCard->prox = child;
 
     while (sales != NULL) {
         stock = getStockByCode(sales->codProduto);

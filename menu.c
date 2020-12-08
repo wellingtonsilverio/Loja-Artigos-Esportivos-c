@@ -61,7 +61,6 @@ void menu() {
                 codVenda = getInt("\tCodigo de venda: ");
             	if (getCardByCode(codVenda) == NULL) {
                 loopVendas = 1;
-                Sale* lastSale = getLastSale();
 
                 do {
                     printf("\tInforme o codigo do produto: ");
@@ -78,7 +77,7 @@ void menu() {
                     }
                 } while (loopVendas == 1);
 
-                createCard(codVenda, cpf, getInt("\tForma de pagamento(0-credito, 1-debito): "), getNextSale(lastSale));
+                createCard(codVenda, cpf, getInt("\tForma de pagamento(0-credito, 1-debito): "), getFirstSaleByCardCode(codVenda));
             }
             printf("\tPagamento efetuado com sucesso!!\n");
 		} else {
