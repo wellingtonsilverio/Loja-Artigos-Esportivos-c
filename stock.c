@@ -102,16 +102,8 @@ void updateStockByCode(int code, char* name, float price, int amount) {
 //deleteStockByCode: recebe o codigo do produto e exclui o mesmo da lista.
 void deleteStockByCode(int code) {
     Stock* stock = getStockByCode(code);
-    Stock* aux = (Stock*) malloc(sizeof(Stock));
 
-    *aux = *stock;
-    if (getNextStock(aux) != NULL) {
-        *stock = *getNextStock(aux);
-    } else {
-       free(stock);
-    }
-
-    free(aux);
+    stock->active = 0;
 }
 
 //printStock: imprime os dados da lista em estoque.

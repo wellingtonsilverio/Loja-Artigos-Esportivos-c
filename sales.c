@@ -145,7 +145,11 @@ void printSale(Sale* sale) {
 
     printf("\n\t\tCOD.Produto       VALOR       QUANTIDADE");
     while (sale != NULL && sale->codVenda == codeCard) {
-        printf("\n\t\t#%-10d    %.2f    %d\n", sale->codProduto, sale->valor, sale->qtd);
+        if (sale->valor > 0) {
+            printf("\n\t\t#%-10d    %.2f    %d\n", sale->codProduto, sale->valor, sale->qtd);
+        } else {
+            printf("\n\t\t#%-10d    TROCA    %d\n", sale->codProduto, sale->qtd);
+        }
         sale = getNextSale(sale);
     }
 }
