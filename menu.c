@@ -17,7 +17,7 @@ void menu() {
 	int loopVendas = 1, pagamento, opcao, codVenda;
 	int menuOpcao, submenu;
 
-	printf("\n\tSistema - Loja de Artigos Esportivos\n\n");
+	printf("\n\tLoja de Artigos Esportivos\n\n");
 
 	printf("\t1. Cadastrar produtos\n");
 	printf("\t2. Cadastrar cliente\n");
@@ -36,7 +36,7 @@ void menu() {
 	{
 	case 1:
 		printf("\n\tCADASTRAR PRODUTO:\n");
-		printf("\tDigite o codigo do produto: ");
+		printf("\n\tDigite o codigo do produto: ");
 		scanf("%d", &codigoProduto);
 		if (getStockByCode(codigoProduto) != NULL) {
 			printf("\tERRO! - codigo ja cadastrado!\n");
@@ -45,8 +45,8 @@ void menu() {
 		}
 		break;
 	case 2:
-		printf("\tCADASTRAR CLIENTE:\n");
-		printf("\tDigite o CPF do novo cliente: ");
+		printf("\n\tCADASTRAR CLIENTE:\n");
+		printf("\n\tDigite o CPF do novo cliente: ");
 		scanf("%d", &cpf);
 		if (getClientByCPF(cpf) != NULL) {
 			printf("\tERRO! - CPF ja cadastrado!\n");
@@ -55,7 +55,7 @@ void menu() {
 		}
 		break;
 	case 3:
-		printf("\tCADASTRAR VENDA:\n");
+		printf("\n\tCADASTRAR VENDA:\n");
 		cpf = getInt("\tCPF: ");
 		if (getClientByCPF(cpf) != NULL) {
                 codVenda = getInt("\tCodigo de venda: ");
@@ -73,23 +73,23 @@ void menu() {
 
                         loopVendas = getInt("\tDeseja adicionar um novo item?(1-sim, 0-nao): ");
                     } else {
-                        printf("\tProduto nao existe ou esta fora de estoque!\n");
+                        printf("\n\tProduto nao existe ou esta fora de estoque!\n");
                     }
                 } while (loopVendas == 1);
 
                 createCard(codVenda, cpf, getInt("\tForma de pagamento(0-credito, 1-debito): "), getFirstSaleByCardCode(codVenda));
             }
-            printf("\tPagamento efetuado com sucesso!!\n");
+            printf("\tPAGAMENTO EFETUADO COM SUCESSO!\n");
 		} else {
-		    printf("\CPF não existe no sistema!!\n");
+		    printf("\tCPF nao cadastrado!\n");
 		}
 
 
 
 		break;
 	case 4:
-		printf("\tTROCAR PRODUTO:\n");
-		printf("\tInforme o codigo da venda: ");
+		printf("\n\tTROCAR PRODUTO:\n");
+		printf("\n\tInforme o codigo da venda: ");
 		scanf("%d", &codigoVenda);
 		printf("\tInforme o codigo do produto: ");
 		scanf("%d", &codigoProduto);
@@ -114,8 +114,8 @@ void menu() {
 		switch (submenu)
 		{
 		case 1:
-			printf("\tALTERAR CLIENTE:\n");
-			printf("\tDigite o CPF do cliente: ");
+			printf("\n\tALTERAR CLIENTE:\n");
+			printf("\n\tDigite o CPF do cliente: ");
 			scanf("%d", &cpf);
 			if (getClientByCPF(cpf) != NULL)
 			{
@@ -123,12 +123,12 @@ void menu() {
 			}
 			else
 			{
-				printf("\ERRO! - nao foi possivel encontrar o CPF!\n");
+				printf("\tERRO! - CPF nao encontrado!\n");
 			}
 			break;
 		case 2:
-			printf("\tALTERAR PRODUTO:\n");
-			printf("\tDigite o codigo do produto: ");
+			printf("\n\tALTERAR PRODUTO:\n");
+			printf("\n\tDigite o codigo do produto: ");
 			scanf("%d", &codigoProduto);
 
 			if (getStockByCode(codigoProduto) != NULL) {
@@ -142,27 +142,23 @@ void menu() {
 			}
 			break;
 		case 3:
-			printf("\tEXCLUIR CLIENTE:\n");
-			printf("\tDigite o CPF do cliente: ");
+			printf("\n\tEXCLUIR CLIENTE:\n");
+			printf("\n\tDigite o CPF do cliente: ");
 			scanf("%d", &cpf);
-			if (getClientByCPF(cpf) != NULL)
-			{
+			if (getClientByCPF(cpf) != NULL){
 				printf("\tVoce tem certeza?(1-Sim, 0-Nao): ");
 				scanf("%d", &opcao);
-				if (opcao == 1)
-				{
+				if (opcao == 1){
 					deleteClientByCPF(cpf);
 					printf("\tCLIENTE EXCLUIDO COM SUCESSO!!!\n");
 				}
-			}
-			else
-			{
-				printf("\ERRO! - nao foi possivel encontrar o CPF!\n");
+			}else{
+				printf("\tERRO! - nao foi possivel encontrar o CPF!\n");
 			}
 			break;
 		case 4:
-			printf("\tEXCLUIR PRODUTO:\n");
-			printf("\tDigite o codigo do produto: ");
+			printf("\n\tEXCLUIR PRODUTO:\n");
+			printf("\n\tDigite o codigo do produto: ");
 			scanf("%d", &codigoProduto);
 			if (getStockByCode(codigoProduto) != NULL)
 			{
@@ -171,7 +167,7 @@ void menu() {
 				if (opcao == 1)
 				{
 					deleteStockByCode(codigoProduto);
-					printf("\tITEM EXCLUIDO COM SUCESSO!!!\n");
+					printf("\tITEM EXCLUIDO COM SUCESSO !\n");
 				}
 			}
 			else
@@ -191,15 +187,28 @@ void menu() {
 		break;
 	case 8:
 		saveAll();
+		/* AQUI ACHO QUE CABE UM IF (DEU CERTO) IMPRIME MENSAGEM DE CONFIRMAÇÃO, ELSE MENSAGEM DE ERRO DEIXEI A ESTRUTURA
+		MAS N SEI O QUE COLOCAR NA VERIFICAÇÃO
+        /* if(){
+		printf("\n\tOS DADOS FORAM SALVOS COM SUCESSO !\n\n");
+        }else{
+            printf("\n\tErro - OS DADOS NAO FORAM SALVOS!\n\n");
+        } */
 		break;
 	case 9:
 		loadAll();
+		 /* AQUI TBM if(){
+		printf("\n\tOS DADOS FORAM CARREGADOS COM SUCESSO !\n\n");
+        }else{
+            printf("\n\tErro - OS DADOS NAO FORAM CARREGADOS!\n\n");
+        }
+        */
 		break;
 	case 0:
 		printf("\n\tObrigado por usar o Sistema - Loja de Artigos Esportivos\n");
 		break;
 	default:
-		printf("\n\tERRO! - opcao invalida\n");
+		printf("\n\tERRO! - Opcao invalida\n");
 		}
 
 	if (menuOpcao != 0)
