@@ -187,30 +187,18 @@ void menu() {
 		break;
 	case 8:
 		saveAll();
-		/* AQUI ACHO QUE CABE UM IF (DEU CERTO) IMPRIME MENSAGEM DE CONFIRMAÇÃO, ELSE MENSAGEM DE ERRO DEIXEI A ESTRUTURA
-		MAS N SEI O QUE COLOCAR NA VERIFICAÇÃO
-        /* if(){
-		printf("\n\tOS DADOS FORAM SALVOS COM SUCESSO !\n\n");
-        }else{
-            printf("\n\tErro - OS DADOS NAO FORAM SALVOS!\n\n");
-        } */
+        printf("\n\tOS DADOS FORAM SALVOS COM SUCESSO !\n\n");
 		break;
 	case 9:
 		loadAll();
-		 /* AQUI TBM if(){
 		printf("\n\tOS DADOS FORAM CARREGADOS COM SUCESSO !\n\n");
-        }else{
-            printf("\n\tErro - OS DADOS NAO FORAM CARREGADOS!\n\n");
-        }
-        */
 		break;
 	case 0:
 		printf("\n\tObrigado por usar o Sistema - Loja de Artigos Esportivos\n");
 		break;
 	default:
 		printf("\n\tERRO! - Opcao invalida\n");
-		}
-
+    }
 	if (menuOpcao != 0)
 	{
 		pressioneZero();
