@@ -7,7 +7,7 @@
 #include "sales.h"
 #include "shopping_cart.h"
 #include "getVariables.h"
-
+// teste
 //menu: menu interativo com o usuario.
 void menu() {
 
