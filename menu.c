@@ -32,14 +32,13 @@ void menu() {
 	printf("\n\tSelecione a opcao desejada: ");
 	scanf("%d", &menuOpcao);
 
-	switch (menuOpcao)
-	{
+	switch (menuOpcao){
 	case 1:
 		printf("\n\tCADASTRAR PRODUTO:\n");
 		printf("\n\tDigite o codigo do produto: ");
 		scanf("%d", &codigoProduto);
 		if (getStockByCode(codigoProduto) != NULL) {
-			printf("\tERRO! - codigo ja cadastrado!\n");
+			printf("\n\tERRO! - codigo ja cadastrado!\n");
 		} else {
 			createStock(codigoProduto, getString("\tNome: "), getFloat("\tPreco: "), getInt("\tQuantidade: "));
 		}
@@ -49,13 +48,13 @@ void menu() {
 		printf("\n\tDigite o CPF do novo cliente: ");
 		scanf("%d", &cpf);
 		if (getClientByCPF(cpf) != NULL) {
-			printf("\tERRO! - CPF ja cadastrado!\n");
+			printf("\n\tERRO! - CPF ja cadastrado!\n");
 		} else {
 			createClient(getString("\tNome: "), cpf, getInt("\tTelefone: "), getString("\tE-mail: "));
 		}
 		break;
 	case 3:
-		printf("\n\tCADASTRAR VENDA:\n");
+		printf("\n\tCADASTRAR VENDA:\n\n");
 		cpf = getInt("\tCPF: ");
 		if (getClientByCPF(cpf) != NULL) {
                 codVenda = getInt("\tCodigo de venda: ");
@@ -71,15 +70,15 @@ void menu() {
                     if (product != NULL && product->qtd >= quantidade) {
                         createSale(codigoProduto, codVenda, product->valor * quantidade, quantidade);
 
-                        loopVendas = getInt("\tDeseja adicionar um novo item?(1-sim, 0-nao): ");
+                        loopVendas = getInt("\tDeseja adicionar um novo item?(0-NAO / 1-SIM): ");
                     } else {
                         printf("\n\tProduto nao existe ou esta fora de estoque!\n");
                     }
                 } while (loopVendas == 1);
 
-                createCard(codVenda, cpf, getInt("\tForma de pagamento(0-credito, 1-debito): "), getFirstSaleByCardCode(codVenda));
+                createCard(codVenda, cpf, getInt("\tForma de pagamento(0-CREDITO / 1-DEBITO): "), getFirstSaleByCardCode(codVenda));
             }
-            printf("\tPAGAMENTO EFETUADO COM SUCESSO!\n");
+            printf("\n\tVENDA REGISTRADA COM SUCESSO!\n");
 		} else {
 		    printf("\tCPF nao cadastrado!\n");
 		}
@@ -94,19 +93,16 @@ void menu() {
 		printf("\tInforme o codigo do produto: ");
 		scanf("%d", &codigoProduto);
 		Card* card = getCardByCode(codigoVenda);
-		if (card != NULL)
-		{
+		if (card != NULL){
 			refound(codigoVenda, codigoProduto);
-			printf("\tProduto trocado com sucesso!!\n");
-		}
-		else
-		{
-			printf("\tERRO! - carrinho nao encontrado!\n");
+			printf("\n\tTROCA EFETUADA COM SUCESSO!\n");
+		}else{
+			printf("\n\tERRO! - Venda nao encontrada!\n");
 		}
 		break;
 	case 5:
-		printf("\n\t1.Alterar dados cliente\n");
-		printf("\t2.Alterar dados produto\n");
+		printf("\n\t1.Alterar dados do cliente\n");
+		printf("\t2.Alterar dados do produto\n");
 		printf("\t3.Excluir cliente\n");
 		printf("\t4.Excluir produto\n");
 		printf("\n\tSeleciona a opcao desejada: ");
@@ -117,13 +113,11 @@ void menu() {
 			printf("\n\tALTERAR CLIENTE:\n");
 			printf("\n\tDigite o CPF do cliente: ");
 			scanf("%d", &cpf);
-			if (getClientByCPF(cpf) != NULL)
-			{
-				updateClientByCPF(cpf, getString("\tNome: "), getInt("\tTelefone: "), getString("\tE-mail: "));
-			}
-			else
-			{
-				printf("\tERRO! - CPF nao encontrado!\n");
+			if (getClientByCPF(cpf) != NULL){
+                printf("\n\tCLIENTE ENCONTRADO! - INSIRA OS NOVOS DADOS:\n");
+				updateClientByCPF(cpf, getString("\tNome: "), getInt("\tTelefone: "), getString("\n\tE-mail: "));
+			}else{
+				printf("\n\tERRO! - CPF nao encontrado!\n");
 			}
 			break;
 		case 2:
@@ -132,13 +126,10 @@ void menu() {
 			scanf("%d", &codigoProduto);
 
 			if (getStockByCode(codigoProduto) != NULL) {
-                printf("\tPRODUTO ENCONTRADO! - Alterar cadastro\n");
-
-                updateStockByCode(codigoProduto, getString("\tNome: "), getFloat("\tValor(R$): "), getInt("\tQuantidade: "));
-
-                printf("\tEstoque - alteracao\n");
+                printf("\n\tPRODUTO ENCONTRADO! - INSIRA OS NOVOS DADOS:\n");
+                updateStockByCode(codigoProduto, getString("\tNome: "), getFloat("\tValor(R$): "), getInt("\n\tQuantidade: "));
 			} else {
-                printf("\tERRO - Estoque nao encontrado!!!\n");
+                printf("\n\tERRO - Estoque nao encontrado!!!\n");
 			}
 			break;
 		case 3:
@@ -146,37 +137,38 @@ void menu() {
 			printf("\n\tDigite o CPF do cliente: ");
 			scanf("%d", &cpf);
 			if (getClientByCPF(cpf) != NULL){
-				printf("\tVoce tem certeza?(1-Sim, 0-Nao): ");
+                printf("\n\tCLIENTE ENCONTRADO!\n");
+				printf("\tVoce tem certeza?(1-SIM / 0-NAO): ");
 				scanf("%d", &opcao);
 				if (opcao == 1){
 					deleteClientByCPF(cpf);
-					printf("\tCLIENTE EXCLUIDO COM SUCESSO!!!\n");
+					printf("\n\tCLIENTE EXCLUIDO COM SUCESSO!\n");
 				}
 			}else{
-				printf("\tERRO! - nao foi possivel encontrar o CPF!\n");
+				printf("\n\tERRO! - CPF nao encontrado!\n");
 			}
 			break;
 		case 4:
 			printf("\n\tEXCLUIR PRODUTO:\n");
 			printf("\n\tDigite o codigo do produto: ");
 			scanf("%d", &codigoProduto);
-			if (getStockByCode(codigoProduto) != NULL)
-			{
-				printf("\tVoce tem certeza?(1-Sim, 0-Nao): ");
+			if (getStockByCode(codigoProduto) != NULL){
+                printf("\n\tPRODUTO ENCONTRADO!\n");
+				printf("\tVoce tem certeza?(1-SIM / 0-NAO): ");
 				scanf("%d", &opcao);
 				if (opcao == 1)
 				{
 					deleteStockByCode(codigoProduto);
-					printf("\tITEM EXCLUIDO COM SUCESSO !\n");
+					printf("\n\tITEM EXCLUIDO COM SUCESSO !\n");
 				}
 			}
 			else
 			{
-				printf("\tERRO! - nao foi possivel encontrar o Codigo do produto!\n");
+				printf("\n\tERRO! - Codigo nao encontrado!\n");
 			}
 			break;
 		default:
-			printf("\tERRO! - opcao invalida\n");
+			printf("\n\tERRO! - opcao invalida\n");
 		}
 		break;
 	case 6:
@@ -217,7 +209,7 @@ void pressioneZero(){
   int botao = 1;
 
   while (botao != 0){
-    printf("\tPressione 0 para voltar ao menu: ");
+    printf("\n\tPressione 0 para voltar ao menu: ");
     scanf("%d", &botao);
   }
   system("cls");

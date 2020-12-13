@@ -143,12 +143,12 @@ void printSale(Sale* sale) {
 
     int codeCard = sale->codVenda;
 
-    printf("\n\t\tCOD.Produto       VALOR       QUANTIDADE");
+    printf("\n\tCOD.Produto       VALOR       QUANTIDADE");
     while (sale != NULL && sale->codVenda == codeCard) {
         if (sale->valor > 0) {
-            printf("\n\t\t#%-10d    %.2f    %d\n", sale->codProduto, sale->valor, sale->qtd);
+            printf("\n\t#%-13d    %.2f    %8d\n", sale->codProduto, sale->valor, sale->qtd);
         } else {
-            printf("\n\t\t#%-10d    TROCA    %d\n", sale->codProduto, sale->qtd);
+            printf("\n\t#%-10d    TROCA    %d\n", sale->codProduto, sale->qtd);
         }
         sale = getNextSale(sale);
     }
@@ -322,17 +322,17 @@ void printCards(){
     Card* card = getFirstCard();
 
     while (card != NULL) {
-        printf("\n\t--------------------------------------------------------------------\n");
+        printf("\n\t--------------------------------------------------------------------");
         printf("\n\tCOD.VENDA       CPF");
-        printf("\n\t#%-10d    %d\n", card->codVenda, card->CPF);
+        printf("\n\t#%-10d      %d\n", card->codVenda, card->CPF);
         printSale(card->sales);
-        printf("\tPagamento: ");
+        printf("\n\tForma de Pagamento: ");
         if (card->pagamento == 1){
       		printf("DEBITO\n");
      	}else{
       		printf("CREDITO\n");
      	}
-        printf("\n\t--------------------------------------------------------------------\n");
+        printf("\t--------------------------------------------------------------------\n");
         card = getNextCard(card);
     }
 }

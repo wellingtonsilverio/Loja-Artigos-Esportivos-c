@@ -104,7 +104,7 @@
 
 1607193510 c:\users\caiom\documents\github\loja-artigos-esportivos-c\client.h
 
-1607522378 source:c:\users\caiom\documents\github\loja-artigos-esportivos-c\menu.c
+1607696208 source:c:\users\caiom\documents\github\loja-artigos-esportivos-c\menu.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -125,13 +125,13 @@
 
 1607193510 c:\users\caiom\documents\github\loja-artigos-esportivos-c\persist.h
 
-1607517707 source:c:\users\caiom\documents\github\loja-artigos-esportivos-c\sales.c
+1607613397 source:c:\users\caiom\documents\github\loja-artigos-esportivos-c\sales.c
 	<stdio.h>
 	<stdlib.h>
 	"sales.h"
 	"stock.h"
 
-1607517707 source:c:\users\caiom\documents\github\loja-artigos-esportivos-c\stock.c
+1607613397 source:c:\users\caiom\documents\github\loja-artigos-esportivos-c\stock.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

@@ -1,4 +1,7 @@
-#VSCODE
+# STORAGE FILE
+.bin
+
+# VSCODE
 .vscode
 
 # Prerequisites

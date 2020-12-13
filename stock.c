@@ -110,11 +110,11 @@ void deleteStockByCode(int code) {
 void printStock(){
     Stock* stock = getFirstStock();
 
-    printf("\n\t--------------------------------------------------------------------\n");
+    printf("\n\t--------------------------------------------------------------------");
     printf("\n\tCOD.PRODUTO       NOME       VALOR       QUANTIDADE");
     while (stock != NULL && stock->codigo != 0) {
         if (stock->valor >= 0 && stock->active == 1) {
-            printf("\n\t#%-10d    %s    %.2f    %d\n", stock->codigo, stock->nome, stock->valor, stock->qtd);
+            printf("\n\t#%-7d    %10s       %.2f    %10d", stock->codigo, stock->nome, stock->valor, stock->qtd);
         } else if(stock->active == 0) {
             printf("\n\t#%-10d    %s    FORA ESTOQUE\n", stock->codigo, stock->nome);
         } else {
