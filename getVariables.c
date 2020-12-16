@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+//getInt: recebe uma string do titulo do item a ser inserido no sistema e usa scanf para o mesmo. 
 int getInt(char* title){
     int aux;
 
@@ -8,6 +9,7 @@ int getInt(char* title){
     return aux;
 }
 
+//getFloat: recebe uma string do titulo do item a ser inserido no sistema e usa scanf para o mesmo. 
 float getFloat(char* title){
     float aux;
 
@@ -16,6 +18,7 @@ float getFloat(char* title){
     return aux;
 }
 
+//getString: recebe uma string do titulo do item a ser inserido no sistema e usa fgets para o mesmo. 
 const char* getString(char* title){
     char* aux = (char*) malloc(sizeof(char) * 100);
 
