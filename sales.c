@@ -130,6 +130,8 @@ void deleteSaleByCode(int code){
     *aux = *sale;
     if (getNextSale(aux) != NULL) {
         *sale = *getNextSale(aux);
+    } else {
+        free(sale);
     }
 
     free(aux);
@@ -284,7 +286,7 @@ Card* getLastCard(){
     }
 }
 
-//getCardByCode: recebe o codigo do carrinho a ser procurado e retorna o mesmo. 
+//getCardByCode: recebe o codigo do carrinho a ser procurado e retorna o mesmo.
 Card* getCardByCode(int code){
     Card* card = getFirstCard();
 
@@ -322,6 +324,8 @@ void deleteCardByCode(int code){
     *aux = *card;
     if (getNextCard(aux) != NULL) {
         *card = *getNextCard(aux);
+    } else {
+        free(card);
     }
 
     free(aux);
