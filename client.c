@@ -157,7 +157,6 @@ void loadClient(){
                 client->prox = read;
                 client = getNextClient(client);
             }
-
         }
     }
 
