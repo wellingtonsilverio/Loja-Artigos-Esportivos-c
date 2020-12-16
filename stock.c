@@ -115,7 +115,7 @@ void printStock(){
         if (stock->valor >= 0 && stock->active == 1) {
             printf("\n\t#%-7d    %10s       %.2f    %10d", stock->codigo, stock->nome, stock->valor, stock->qtd);
         } else if(stock->active == 0) {
-            printf("\n\t#%-10d    %s\t\tFORA ESTOQUE\n", stock->codigo, stock->nome);
+            printf("\n\t#%-10d      %s\t\tFORA ESTOQUE\n", stock->codigo, stock->nome);;
         } else {
             printf("\n\t#%-7d     %10s\t\tTROCA\n", stock->codigo, stock->nome);
         }
