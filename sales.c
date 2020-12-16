@@ -135,7 +135,7 @@ void deleteSaleByCode(int code){
     free(aux);
 }
 
-//printSale: imprime a lista de vendas
+//printSale: imprime a lista de vendas.
 void printSale(Sale* sale) {
     if (sale == NULL) {
         return;
@@ -154,6 +154,7 @@ void printSale(Sale* sale) {
     }
 }
 
+//persistSale: salva os dados registrados no sistema em um arquivo.
 void persistSale(){
     FILE *file;
 
@@ -173,6 +174,7 @@ void persistSale(){
     fclose(file);
 }
 
+//loadSale: carrega os dados existentes no arquivo.
 void loadSale(){
     FILE *file;
 
@@ -212,11 +214,12 @@ void loadSale(){
     fclose(file);
 }
 
+//freeSale: libera a memoria de vendas
 void freeSale(){
     free(sales);
 }
 
-
+//createCard: recebe as informacoes para cadastro de uma venda e adiciona uma novo carrinho a lista de carrinhos.
 void createCard(int code, int CPF, int paymentType, Sale* sales) {
     Card* child = (Card*) malloc(sizeof(Card));
     Card* lastCard = getLastCard();
@@ -248,6 +251,7 @@ void createCard(int code, int CPF, int paymentType, Sale* sales) {
     return;
 }
 
+//getFirstCard: retorna o primeiro item da lista de vendas.
 Card* getFirstCard() {
     if (cards == NULL) {
         cards = (Card*) malloc(sizeof(Card));
@@ -258,6 +262,7 @@ Card* getFirstCard() {
     return cards;
 }
 
+//getNextCard: retorna o proximo carrinho na lista.
 Card* getNextCard(Card* card){
     if (card == NULL) {
         card = (Card*) malloc(sizeof(Card));
@@ -268,6 +273,7 @@ Card* getNextCard(Card* card){
     return card->prox;
 }
 
+//getLastCard: retorna o ultimo carrinho.
 Card* getLastCard(){
     Card* card = getFirstCard();
     while (1) {
@@ -278,6 +284,7 @@ Card* getLastCard(){
     }
 }
 
+//getCardByCode: recebe o codigo do carrinho a ser procurado e retorna o mesmo. 
 Card* getCardByCode(int code){
     Card* card = getFirstCard();
 
@@ -292,6 +299,7 @@ Card* getCardByCode(int code){
     return card;
 }
 
+//updateCardByCode: recebe os dados para a atualizacao do carrinho, e o modifica.
 void updateCardByCode(int code, int CPF, int paymentType){
     Card* card = getCardByCode(code);
 
@@ -306,6 +314,7 @@ void updateCardByCode(int code, int CPF, int paymentType){
     return;
 }
 
+//deleteCardByCode: recebe o codigo do carrinho a ser excluido, o encontra e exclui o mesmo.
 void deleteCardByCode(int code){
     Card* card = getCardByCode(code);
     Card* aux = (Card*) malloc(sizeof(Card));
@@ -318,6 +327,7 @@ void deleteCardByCode(int code){
     free(aux);
 }
 
+//printCards: imprime a lista de carrinhos.
 void printCards(){
     Card* card = getFirstCard();
 
@@ -337,6 +347,7 @@ void printCards(){
     }
 }
 
+//persistCard: salva os dados do sistema em um arquivo.
 void persistCard(){
     FILE *file;
 
@@ -357,6 +368,7 @@ void persistCard(){
     fclose(file);
 }
 
+//loadCard: carrega os dados do arquivo no sistema.
 void loadCard(){
     FILE *file;
 
@@ -399,6 +411,7 @@ void loadCard(){
     fclose(file);
 }
 
+//freeCard: libera a memoria.
 void freeCard(){
     free(cards);
 }
