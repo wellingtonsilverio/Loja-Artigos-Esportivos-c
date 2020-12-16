@@ -98,6 +98,8 @@ void deleteClientByCPF(int CPF) {
     *aux = *client;
     if (getNextClient(aux) != NULL) {
         *client = *getNextClient(aux);
+    } else {
+        free(client);
     }
 
     free(aux);
