@@ -67,12 +67,12 @@ void menu() {
                     printf("\tInforme a quantidade: ");
                     scanf("%d", &quantidade);
                     Stock* product = getStockByCode(codigoProduto);
-                    if (product != NULL && product->qtd >= quantidade) {
+                    if (product != NULL && product->active == 1 && product->qtd >= quantidade) {
                         createSale(codigoProduto, codVenda, product->valor * quantidade, quantidade);
 
                         loopVendas = getInt("\tDeseja adicionar um novo item?(0-NAO / 1-SIM): ");
                     } else {
-                        printf("\n\tProduto nao existe ou esta fora de estoque!\n");
+                        printf("\n\tProduto nao existe, nao tem a quantidade ou esta fora de estoque!\n");
 			loopVendas = getInt("\tDeseja continuar comprando?(0-NAO / 1-SIM): \n");
 			if (loopVendas == 0) {
 			    break;
