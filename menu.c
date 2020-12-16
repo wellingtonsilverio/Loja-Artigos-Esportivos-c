@@ -56,39 +56,37 @@ void menu() {
 	case 3:
 		printf("\n\tCADASTRAR VENDA:\n\n");
 		cpf = getInt("\tCPF: ");
-		if (getClientByCPF(cpf) != NULL) {
-                codVenda = getInt("\tCodigo de venda: ");
-            	if (getCardByCode(codVenda) == NULL) {
-                loopVendas = 1;
+		Client* client = getClientByCPF(cpf);
+		if (client != NULL && client->CPF == cpf) {
+			codVenda = getInt("\tCodigo de venda: ");
+			if (getCardByCode(codVenda) == NULL) {
+				loopVendas = 1;
 
-                do {
-                    printf("\tInforme o codigo do produto: ");
-                    scanf("%d", &codigoProduto);
-                    printf("\tInforme a quantidade: ");
-                    scanf("%d", &quantidade);
-                    Stock* product = getStockByCode(codigoProduto);
-                    if (product != NULL && product->active == 1 && product->qtd >= quantidade) {
-                        createSale(codigoProduto, codVenda, product->valor * quantidade, quantidade);
+				do {
+				    printf("\tInforme o codigo do produto: ");
+				    scanf("%d", &codigoProduto);
+				    printf("\tInforme a quantidade: ");
+				    scanf("%d", &quantidade);
+				    Stock* product = getStockByCode(codigoProduto);
+				    if (product != NULL && product->active == 1 && product->qtd >= quantidade) {
+					createSale(codigoProduto, codVenda, product->valor * quantidade, quantidade);
 
-                        loopVendas = getInt("\tDeseja adicionar um novo item?(0-NAO / 1-SIM): ");
-                    } else {
-                        printf("\n\tProduto nao existe, nao tem a quantidade ou esta fora de estoque!\n");
-			loopVendas = getInt("\tDeseja continuar comprando?(0-NAO / 1-SIM): \n");
-			if (loopVendas == 0) {
-			    break;
-			}
-                    }
-                } while (loopVendas == 1);
+					loopVendas = getInt("\tDeseja adicionar um novo item?(0-NAO / 1-SIM): ");
+				    } else {
+					printf("\n\tProduto nao existe, nao tem a quantidade ou esta fora de estoque!\n");
+					loopVendas = getInt("\tDeseja continuar comprando?(0-NAO / 1-SIM): \n");
+					if (loopVendas == 0) {
+					    break;
+					}
+				    }
+				} while (loopVendas == 1);
 
-                createCard(codVenda, cpf, getInt("\tForma de pagamento(0-CREDITO / 1-DEBITO): "), getFirstSaleByCardCode(codVenda));
-            }
-            printf("\n\tVENDA REGISTRADA COM SUCESSO!\n");
+				createCard(codVenda, cpf, getInt("\tForma de pagamento(0-CREDITO / 1-DEBITO): "), getFirstSaleByCardCode(codVenda));
+		    	}
+		   	printf("\n\tVENDA REGISTRADA COM SUCESSO!\n");
 		} else {
-		    printf("\tCPF nao cadastrado!\n");
+			printf("\tCPF nao cadastrado!\n");
 		}
-
-
-
 		break;
 	case 4:
 		printf("\n\tTROCAR PRODUTO:\n");
