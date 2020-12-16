@@ -11,6 +11,12 @@ Loja de Artigos Esportivos em C para SI200-B 2020/S2 (Algoritmos e Programação
 
 
 ## :rocket: Como rodar
-Preferimos rodar o projeto no editor mais famoso e que usamos durante a aula, ele simplica a compilação e a compilação de varios arquivos.
+Preferimos rodar o projeto no editor mais famoso e que usamos durante a aula, ele simplica a compilação e a junção de varios arquivos.
 
 [CODE::BLOCK](http://www.codeblocks.org)
+
+## :book: Fontes
+
+[LINGUAGEM C: ARQUIVOS - Prof. André Backes](http://www.facom.ufu.br/~backes/gsi011/Aula00-Arquivos.pdf)
+
+[Listas encadeadas - Paulo Feofiloff](https://www.ime.usp.br/~pf/algoritmos/aulas/lista.html)
