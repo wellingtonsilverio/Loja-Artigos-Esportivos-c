@@ -148,7 +148,7 @@ void printSale(Sale* sale) {
         if (sale->valor > 0) {
             printf("\n\t#%-13d    %.2f    %8d\n", sale->codProduto, sale->valor, sale->qtd);
         } else {
-            printf("\n\t#%-10d    TROCA    %d\n", sale->codProduto, sale->qtd);
+            printf("\n\t#%-10d       TROCA           %d\n", sale->codProduto, sale->qtd);
         }
         sale = getNextSale(sale);
     }
