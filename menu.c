@@ -73,6 +73,10 @@ void menu() {
                         loopVendas = getInt("\tDeseja adicionar um novo item?(0-NAO / 1-SIM): ");
                     } else {
                         printf("\n\tProduto nao existe ou esta fora de estoque!\n");
+			loopVendas = getInt("\tDeseja continuar comprando?(0-NAO / 1-SIM): \n");
+			if (loopVendas == 0) {
+			    break;
+			}
                     }
                 } while (loopVendas == 1);
 
