@@ -102,7 +102,6 @@ void updateStockByCode(int code, char* name, float price, int amount) {
 //deleteStockByCode: recebe o codigo do produto e exclui o mesmo da lista.
 void deleteStockByCode(int code) {
     Stock* stock = getStockByCode(code);
-
     stock->active = 0;
 }
 
@@ -118,7 +117,7 @@ void printStock(){
         } else if(stock->active == 0) {
             printf("\n\t#%-10d    %s    FORA ESTOQUE\n", stock->codigo, stock->nome);
         } else {
-            printf("\n\t#%-10d    %s    TROCA\n", stock->codigo, stock->nome);
+            printf("\n\t#%-7d     %10s\t\tTROCA\n", stock->codigo, stock->nome);
         }
 
         stock = getNextStock(stock);
@@ -161,7 +160,6 @@ void loadStock(){
 
     while(1){
         Stock* read = (Stock*) malloc(sizeof(Stock));
-
         size_t r = fread(read, sizeof(Stock), 1, file);
 
         if (r < 1) {
@@ -180,7 +178,6 @@ void loadStock(){
                 stock->prox = read;
                 stock = getNextStock(stock);
             }
-
         }
     }
 
