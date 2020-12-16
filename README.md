@@ -1,5 +1,5 @@
 # LOJA DE ARTIGOS ESPORTIVOS
-Loja de Artigos Esportivos em C para SI200-B 2020/S2 (Algoritmos e Programação de Computadores II)
+Loja de Artigos Esportivos em C para SI200-B 2020/S2 (Algoritmos e Programação de Computadores II). O projeto está hospedado no seguinte repositorio [GITHUB](https://github.com/wellingtonsilverio/Loja-Artigos-Esportivos-c)
 
 ## :two_men_holding_hands: Equipe
 
