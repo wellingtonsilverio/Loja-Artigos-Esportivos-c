@@ -7,14 +7,14 @@
 #include "sales.h"
 #include "shopping_cart.h"
 #include "getVariables.h"
-// teste
+
 //menu: menu interativo com o usuario.
 void menu() {
 
 	// Variaveis
 	int cpf, cliente, estoque;
 	int codigoProduto, quantidade, codigoVenda;
-	int loopVendas = 1, pagamento, opcao, codVenda;
+	int loopVendas = 1, pagamento, opcao, codVenda, qtdVenda;
 	int menuOpcao, submenu;
 
 	printf("\n\tLoja de Artigos Esportivos\n\n");
@@ -61,7 +61,7 @@ void menu() {
 			codVenda = getInt("\tCodigo de venda: ");
 			if (getCardByCode(codVenda) == NULL) {
 				loopVendas = 1;
-
+				qtdVenda = 0;
 				do {
 				    printf("\tInforme o codigo do produto: ");
 				    scanf("%d", &codigoProduto);
@@ -70,20 +70,24 @@ void menu() {
 				    Stock* product = getStockByCode(codigoProduto);
 				    if (product != NULL && product->active == 1 && product->qtd >= quantidade) {
 					createSale(codigoProduto, codVenda, product->valor * quantidade, quantidade);
-
+					qtdVenda++;
 					loopVendas = getInt("\tDeseja adicionar um novo item?(0-NAO / 1-SIM): ");
 				    } else {
 					printf("\n\tProduto nao existe, nao tem a quantidade ou esta fora de estoque!\n");
-					loopVendas = getInt("\tDeseja continuar comprando?(0-NAO / 1-SIM): \n");
+					loopVendas = getInt("\tDeseja continuar comprando?(0-NAO / 1-SIM): ");
 					if (loopVendas == 0) {
 					    break;
 					}
 				    }
 				} while (loopVendas == 1);
 
-				createCard(codVenda, cpf, getInt("\tForma de pagamento(0-CREDITO / 1-DEBITO): "), getFirstSaleByCardCode(codVenda));
+				if (qtdVenda > 0) {
+					createCard(codVenda, cpf, getInt("\tForma de pagamento(0-CREDITO / 1-DEBITO): "), getFirstSaleByCardCode(codVenda));
+		   			printf("\n\tVENDA REGISTRADA COM SUCESSO!\n");
+				} else {
+					printf("\tVenda finalizada!\n");
+				}
 		    	}
-		   	printf("\n\tVENDA REGISTRADA COM SUCESSO!\n");
 		} else {
 			printf("\tCPF nao cadastrado!\n");
 		}
